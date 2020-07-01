@@ -4,15 +4,8 @@
 
 body {
   margin: 0;
-  padding: 0 2em;
   font-family: "IBM Plex Sans", sans-serif;
-  /* font-family: "Regina Black"; */
 }
-  @media (min-width: 800px) {
-    body {
-      padding: 0 5em;
-    }
-  }
 
 #nav {
   padding: 0;
@@ -27,6 +20,19 @@ body {
   margin-right: 1em;
 }
 
+main {
+  padding-bottom: 27vh;
+}
+
+#text {
+  padding: 0 2.5rem;
+}
+  @media (min-width: 800px) {
+    #text {
+      padding: 2rem 5rem 3.5rem;
+    }
+  }
+
 #title {
   font-size: 6vh;
   line-height: 1;
@@ -36,12 +42,10 @@ body {
   font-size: 10vh;
   line-height: 1;
   margin: .5em 0;
-  padding-bottom: 27vh;
 }
 
 .feeling {
   font-family: "IBM Plex Serif", serif;
-  /* font-family: "Regina Black Hilite"; */
   font-weight: 500;
   font-style: italic;
 }
@@ -53,7 +57,7 @@ body {
   padding: 2em;
   width: 100%;
   background-color: white;
-  box-shadow: 1px 1px 10px 10px rgba(0,0,0,.05);
+  box-shadow: 1px 1px 10px 10px rgba(0,0,0,.04);
 }
 
 #instruction {
@@ -65,10 +69,6 @@ body {
   display: flex;
   overflow: scroll;
 }
-
-/* .word:not(:last-of-type) {
-  margin-right: 1em;
-} */
 
 .word {
   padding: 1em 2em;
