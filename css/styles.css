@@ -50,7 +50,7 @@ main {
 }
 
 #text {
-  padding: 0 2.5rem;
+  padding: 2.5rem;
 }
   @media (min-width: 800px) {
     #text {
@@ -59,15 +59,25 @@ main {
   }
 
 #title {
-  font-size: 6vh;
+  font-size: 5vh;
   line-height: 1;
 }
+  @media (min-width: 800px) {
+    #title {
+      font-size: 6vh;
+    }
+  }
 
 #poem {
-  font-size: 10vh;
+  font-size: 8vh;
   line-height: 1;
   margin: .5em 0;
 }
+  @media (min-width: 800px) {
+    #poem {
+      font-size: 10vh;
+    }
+  }
 
 .feeling {
   font-family: "IBM Plex Serif", serif;
@@ -79,14 +89,22 @@ main {
   position: fixed;
   bottom: 0;
   left: 0;
-  padding: 2em;
+  padding: 2rem;
   width: 100%;
   background-color: var(--mid-col);
   box-shadow: 1px 1px 10px 10px rgba(0,0,0,.04);
+  height: auto;
+  /* transition: .3s ease-in-out height; */
+}
+
+#handle {
+  display: block;
+  text-align: center;
+  margin: -1rem auto 1rem;
 }
 
 .instruction {
-  margin-top: 0;
+  margin-bottom: 0;
   font-style: italic;
   opacity: .7;
 }
@@ -94,8 +112,6 @@ main {
 #choices {
   display: flex;
   overflow: scroll;
-  /* position: relative; */
-  /* height: 3rem; */
 }
 
 .word {

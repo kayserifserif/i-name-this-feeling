@@ -3,9 +3,10 @@
 <head>
   <title>Feelings Poem</title>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@xz/fonts@1/serve/ibm-plex-serif.min.css"> 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@xz/fonts@1/serve/ibm-plex-sans.min.css"> 
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
   <!-- <nav>
@@ -21,9 +22,7 @@
     </div>
   </main>
   <div id="toolbox">
-    <p class="instruction">One-syllable feelings, felt in waves turbulent, uneven, overlapping, and without end.</p>
-    <p class="instruction">Add words by clicking, or <a href="#" id="clear">clear</a> the poem, or <a href="#" id="export">export</a> it when you&rsquo;re done.</p>
-    <!-- Want to <a href="#" id="reverse">reverse</a> colours? -->
+    <a href="#" id="handle"><img src="img/down-arrow.svg" width="10" height="10"></a>
     <div id="choices">
       <button class="word">rage</button>
       <button class="word">fear</button>
@@ -60,8 +59,12 @@
       <button class="word">calm</button>
       <button class="word">guilt</button>
     </div>
+    <p class="instruction">One-syllable feelings, felt in waves turbulent, uneven, overlapping, and without end.</p>
+    <p class="instruction">Add words by clicking, or <a href="#" id="clear">clear</a> the poem, or <a href="#" id="export">export</a> it when you&rsquo;re done.</p>
+    <p class="instruction">To come: reverse colours, a collaborative poem, translations, randomised buttons, sentiment analysis.</p>
+<!-- Want to <a href="#" id="reverse">reverse</a> colours? -->
   </div>
-  <script src="html2canvas.min.js"></script>
-  <script src="scripts.js"></script>
+  <script src="js/html2canvas.min.js"></script>
+  <script src="js/scripts.js"></script>
 </body>
 </html>
