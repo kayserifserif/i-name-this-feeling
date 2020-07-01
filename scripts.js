@@ -2,15 +2,22 @@
 let text = document.getElementById("text");
 let poem = document.getElementById("poem");
 let words = document.getElementsByClassName("word");
-for (let word of words) {
+for (let i = 0; i < 3; i++) { // fill in three
+  let pos = Math.floor(Math.random() * words.length);
+  let word = words[pos];
+  addNewFeeling(word.textContent);
+}
+for (let word of words) { // add eventlisteners
   word.addEventListener("click", (event) => {
-    let text = event.target.textContent;
-    let newFeeling = document.createElement("span");
-    newFeeling.classList.add("feeling");
-    newFeeling.textContent = text;
-    poem.appendChild(newFeeling);
-    poem.appendChild(document.createTextNode(" and "));
+    addNewFeeling(event.target.textContent);
   });
+}
+function addNewFeeling(text) {
+  let newFeeling = document.createElement("span");
+  newFeeling.classList.add("feeling");
+  newFeeling.textContent = text;
+  poem.appendChild(newFeeling);
+  poem.appendChild(document.createTextNode(" and "));
 }
 
 // clear
