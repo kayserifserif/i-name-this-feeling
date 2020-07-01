@@ -85,7 +85,7 @@ main {
   box-shadow: 1px 1px 10px 10px rgba(0,0,0,.04);
 }
 
-#instruction {
+.instruction {
   margin-top: 0;
   font-style: italic;
   opacity: .7;
