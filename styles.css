@@ -1,3 +1,16 @@
+:root {
+  --dark: #444;
+  --lessdark: #373737;
+  --light: #fff;
+  --lesslight: #f9f9f9;
+  --lightlink: blue;
+  --darklink: #50d6ff;
+  --bg-col: var(--light);
+  --text-col: var(--dark);
+  --mid-col: var(--lesslight);
+  --link-col: var(--lightlink);
+}
+
 * {
   box-sizing: border-box;
 }
@@ -5,6 +18,12 @@
 body {
   margin: 0;
   font-family: "IBM Plex Sans", sans-serif;
+  background-color: var(--bg-col);
+  color: var(--text-col);
+}
+
+a {
+  color: var(--link-col);
 }
 
 #nav {
@@ -56,11 +75,12 @@ main {
   left: 0;
   padding: 2em;
   width: 100%;
-  background-color: white;
+  background-color: var(--mid-col);
   box-shadow: 1px 1px 10px 10px rgba(0,0,0,.04);
 }
 
 #instruction {
+  margin-top: 0;
   font-style: italic;
   opacity: .7;
 }
@@ -71,12 +91,17 @@ main {
 }
 
 .word {
-  padding: 1em 2em;
+  padding: .5em 2em;
   background: none;
-  border: 0;
   font-family: "IBM Plex Serif", serif;
   font-size: 1em;
+  color: var(--text-col);
+  border: .5px solid var(--text-col);
   border-radius: 4px;
+}
+
+.word:not(:last-of-type) {
+  margin-right: 1em;
 }
 
 .word:hover {

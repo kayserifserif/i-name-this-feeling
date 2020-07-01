@@ -14,8 +14,8 @@ for (let word of words) {
 }
 
 // clear
-let clear = document.getElementById("clear");
-clear.addEventListener("click", () => {
+let clearBtn = document.getElementById("clear");
+clearBtn.addEventListener("click", () => {
   poem.innerHTML = "";
 });
 
@@ -33,4 +33,22 @@ exportBtn.addEventListener("click", () => {
     anchor.download = "poem.png";
     anchor.click();
   });
+});
+
+// reverse
+let reverseBtn = document.getElementById("reverse");
+let isLightMode = true;
+reverseBtn.addEventListener("click", () => {
+  if (isLightMode) {
+    document.documentElement.style.setProperty("--bg-col", "var(--dark)");
+    document.documentElement.style.setProperty("--text-col", "var(--light)");
+    document.documentElement.style.setProperty("--mid-col", "var(--lessdark)");
+    document.documentElement.style.setProperty("--link-col", "var(--darklink)");
+  } else {
+    document.documentElement.style.setProperty("--bg-col", "var(--light)");
+    document.documentElement.style.setProperty("--text-col", "var(--dark)");
+    document.documentElement.style.setProperty("--mid-col", "var(--lesslight)");
+    document.documentElement.style.setProperty("--link-col", "var(--lightlink)");
+  }
+  isLightMode = !isLightMode;
 });
