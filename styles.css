@@ -4,11 +4,17 @@
   --light: #fff;
   --lesslight: #f9f9f9;
   --lightlink: blue;
+  --lightlinkhover: aliceblue;
+  --lightlinkactive: #d5e9fb;
   --darklink: #50d6ff;
+  --darklinkhover: #30475b;
+  --darklinkactive: #18344d;
   --bg-col: var(--light);
   --text-col: var(--dark);
   --mid-col: var(--lesslight);
   --link-col: var(--lightlink);
+  --link-hover: var(--lightlinkhover);
+  --link-active: var(--lightlinkactive);
 }
 
 * {
@@ -88,6 +94,8 @@ main {
 #choices {
   display: flex;
   overflow: scroll;
+  /* position: relative; */
+  /* height: 3rem; */
 }
 
 .word {
@@ -105,10 +113,10 @@ main {
 }
 
 .word:hover {
-  /* background-color: aliceblue; */
-  /* background-color: gold; */
-  /* background-color: lightblue; */
-  /* background-color: lightsteelblue; */
-  /* background-color: lightsalmon; */
-  /* background-color: crimson; */
+  cursor: pointer;
+  background-color: var(--link-hover);
+}
+
+.word:active {
+  background-color: var(--link-active);
 }

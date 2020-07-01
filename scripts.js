@@ -44,11 +44,15 @@ reverseBtn.addEventListener("click", () => {
     document.documentElement.style.setProperty("--text-col", "var(--light)");
     document.documentElement.style.setProperty("--mid-col", "var(--lessdark)");
     document.documentElement.style.setProperty("--link-col", "var(--darklink)");
+    document.documentElement.style.setProperty("--link-hover", "var(--darklinkhover)");
+    document.documentElement.style.setProperty("--link-active", "var(--darklinkactive)");
   } else {
     document.documentElement.style.setProperty("--bg-col", "var(--light)");
     document.documentElement.style.setProperty("--text-col", "var(--dark)");
     document.documentElement.style.setProperty("--mid-col", "var(--lesslight)");
     document.documentElement.style.setProperty("--link-col", "var(--lightlink)");
+    document.documentElement.style.setProperty("--link-hover", "var(--lightlinkhover)");
+    document.documentElement.style.setProperty("--link-active", "var(--lightlinkactive)");
   }
   isLightMode = !isLightMode;
 });
