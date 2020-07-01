@@ -1,0 +1,89 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0 2em;
+  font-family: "IBM Plex Sans", sans-serif;
+  /* font-family: "Regina Black"; */
+}
+  @media (min-width: 800px) {
+    body {
+      padding: 0 5em;
+    }
+  }
+
+#nav {
+  padding: 0;
+  list-style-type: none;
+}
+
+#nav li {
+  display: inline-block;
+}
+
+#nav li:not(:last-of-type) {
+  margin-right: 1em;
+}
+
+#title {
+  font-size: 6vh;
+  line-height: 1;
+}
+
+#poem {
+  font-size: 10vh;
+  line-height: 1;
+  margin: .5em 0;
+  padding-bottom: 27vh;
+}
+
+.feeling {
+  font-family: "IBM Plex Serif", serif;
+  /* font-family: "Regina Black Hilite"; */
+  font-weight: 500;
+  font-style: italic;
+}
+
+#toolbox {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  padding: 2em;
+  width: 100%;
+  background-color: white;
+  box-shadow: 1px 1px 10px 10px rgba(0,0,0,.05);
+}
+
+#instruction {
+  font-style: italic;
+  opacity: .7;
+}
+
+#choices {
+  display: flex;
+  overflow: scroll;
+}
+
+/* .word:not(:last-of-type) {
+  margin-right: 1em;
+} */
+
+.word {
+  padding: 1em 2em;
+  background: none;
+  border: 0;
+  font-family: "IBM Plex Serif", serif;
+  font-size: 1em;
+  border-radius: 4px;
+}
+
+.word:hover {
+  /* background-color: aliceblue; */
+  /* background-color: gold; */
+  /* background-color: lightblue; */
+  /* background-color: lightsteelblue; */
+  /* background-color: lightsalmon; */
+  /* background-color: crimson; */
+}
