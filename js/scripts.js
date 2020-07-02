@@ -57,7 +57,8 @@ function addNewFeeling(text) {
 let handleBtn = document.getElementById("handle");
 let isExpanded = true;
 let handleImg = handleBtn.firstChild;
-handleBtn.addEventListener("click", () => {
+handleBtn.addEventListener("click", (event) => {
+  event.preventDefault();
   let toolbox = document.getElementById("toolbox");
   if (isExpanded) {
     toolbox.style.height = "110px";
@@ -71,13 +72,15 @@ handleBtn.addEventListener("click", () => {
 
 // clear
 let clearBtn = document.getElementById("clear");
-clearBtn.addEventListener("click", () => {
+clearBtn.addEventListener("click", (event) => {
+  event.preventDefault();
   poem.innerHTML = "";
 });
 
 // export
 let exportBtn = document.getElementById("export");
-exportBtn.addEventListener("click", () => {
+exportBtn.addEventListener("click", (event) => {
+  event.preventDefault();
   html2canvas(text, {
     logging: false
   }).then(canvas => {
