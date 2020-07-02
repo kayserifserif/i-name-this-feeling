@@ -18,6 +18,10 @@ function addNewFeeling(text) {
   newFeeling.textContent = text;
   poem.appendChild(newFeeling);
   poem.appendChild(document.createTextNode(" and "));
+  window.scrollTo({
+    top: document.body.scrollHeight,
+    behavior: "smooth"
+  });
 }
 
 // handle
