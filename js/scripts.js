@@ -1,13 +1,42 @@
-// words
 let text = document.getElementById("text");
 let poem = document.getElementById("poem");
 let words = document.getElementsByClassName("word");
-for (let i = 0; i < 3; i++) { // fill in three
+
+// randomise
+function shuffle(elems) { // https://j11y.io/javascript/shuffling-the-dom/
+  allElems = (function(){
+    var ret = [], l = elems.length;
+    while (l--) { ret[ret.length] = elems[l]; }
+    return ret;
+  })();
+
+  var shuffled = (function(){
+    var l = allElems.length, ret = [];
+    while (l--) {
+      var random = Math.floor(Math.random() * allElems.length),
+          randEl = allElems[random].cloneNode(true);
+      allElems.splice(random, 1);
+      ret[ret.length] = randEl;
+    }
+    return ret; 
+  })(), l = elems.length;
+
+  while (l--) {
+    elems[l].parentNode.insertBefore(shuffled[l], elems[l].nextSibling);
+    elems[l].parentNode.removeChild(elems[l]);
+  }
+}
+shuffle(words);
+
+// initialise first three
+for (let i = 0; i < 3; i++) {
   let pos = Math.floor(Math.random() * words.length);
   let word = words[pos];
   addNewFeeling(word.textContent);
 }
-for (let word of words) { // add eventlisteners
+
+// words
+for (let word of words) {
   word.addEventListener("click", (event) => {
     addNewFeeling(event.target.textContent);
   });
