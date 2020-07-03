@@ -9,12 +9,6 @@
   --darklink: #50d6ff;
   --darklinkhover: #30475b;
   --darklinkactive: #18344d;
-  --bg-col: var(--light);
-  --text-col: var(--dark);
-  --mid-col: var(--lesslight);
-  --link-col: var(--lightlink);
-  --link-hover: var(--lightlinkhover);
-  --link-active: var(--lightlinkactive);
 }
 
 * {
@@ -51,6 +45,9 @@ main {
 
 #text {
   padding: 2.5rem;
+  background-color: var(--bg-col);
+  width: max-content;
+  max-width: 100%;
 }
   @media (min-width: 800px) {
     #text {

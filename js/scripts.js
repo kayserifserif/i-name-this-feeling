@@ -91,27 +91,33 @@ exportBtn.addEventListener("click", (event) => {
     anchor.target = "_blank";
     anchor.download = "poem.png";
     anchor.click();
+    // document.body.appendChild(canvas);
   });
 });
 
-// // reverse
-// let reverseBtn = document.getElementById("reverse");
-// let isLightMode = true;
-// reverseBtn.addEventListener("click", () => {
-//   if (isLightMode) {
-//     document.documentElement.style.setProperty("--bg-col", "var(--dark)");
-//     document.documentElement.style.setProperty("--text-col", "var(--light)");
-//     document.documentElement.style.setProperty("--mid-col", "var(--lessdark)");
-//     document.documentElement.style.setProperty("--link-col", "var(--darklink)");
-//     document.documentElement.style.setProperty("--link-hover", "var(--darklinkhover)");
-//     document.documentElement.style.setProperty("--link-active", "var(--darklinkactive)");
-//   } else {
-//     document.documentElement.style.setProperty("--bg-col", "var(--light)");
-//     document.documentElement.style.setProperty("--text-col", "var(--dark)");
-//     document.documentElement.style.setProperty("--mid-col", "var(--lesslight)");
-//     document.documentElement.style.setProperty("--link-col", "var(--lightlink)");
-//     document.documentElement.style.setProperty("--link-hover", "var(--lightlinkhover)");
-//     document.documentElement.style.setProperty("--link-active", "var(--lightlinkactive)");
-//   }
-//   isLightMode = !isLightMode;
-// });
+// reverse
+let reverseBtn = document.getElementById("reverse");
+let isLightMode = true;
+reverseBtn.addEventListener("click", (event) => {
+  // console.log(event);
+  event.preventDefault();
+  var themeLink = document.getElementsByTagName("link")[1];
+  if (isLightMode) {
+    themeLink.href = "css/dark.css";
+    // document.documentElement.style.setProperty("--bg-col", "var(--dark)");
+    // document.documentElement.style.setProperty("--text-col", "var(--light)");
+    // document.documentElement.style.setProperty("--mid-col", "var(--lessdark)");
+    // document.documentElement.style.setProperty("--link-col", "var(--darklink)");
+    // document.documentElement.style.setProperty("--link-hover", "var(--darklinkhover)");
+    // document.documentElement.style.setProperty("--link-active", "var(--darklinkactive)");
+  } else {
+    themeLink.href = "css/light.css";
+    // document.documentElement.style.setProperty("--bg-col", "var(--light)");
+    // document.documentElement.style.setProperty("--text-col", "var(--dark)");
+    // document.documentElement.style.setProperty("--mid-col", "var(--lesslight)");
+    // document.documentElement.style.setProperty("--link-col", "var(--lightlink)");
+    // document.documentElement.style.setProperty("--link-hover", "var(--lightlinkhover)");
+    // document.documentElement.style.setProperty("--link-active", "var(--lightlinkactive)");
+  }
+  isLightMode = !isLightMode;
+});
