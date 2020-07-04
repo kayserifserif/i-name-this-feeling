@@ -43,23 +43,22 @@ for (let word of words) {
 }
 function addNewFeeling(text) {
   let para = null;
+  let newBreak = document.createElement("span");
+  newBreak.textContent = " ";
+  newBreak.classList.add("break");
   if (poem.children.length == 0) {
     para = document.createElement("p");
   } else {
     para = poem.lastChild;
+    para.appendChild(newBreak.cloneNode(true));
   }
   let newFeeling = document.createElement("span");
   newFeeling.textContent = text;
   newFeeling.classList.add("feeling");
   para.appendChild(newFeeling);
-  let newBreak = document.createElement("span");
-  // newBreak.textContent = "\240";
-  newBreak.textContent = " ";
-  newBreak.classList.add("break");
   para.appendChild(newBreak);
   // poem.appendChild(document.createTextNode(" and "));
   para.appendChild(document.createTextNode("and"));
-  para.appendChild(newBreak.cloneNode(true));
   if (poem.children.length == 0) {
     poem.appendChild(para);
   }
