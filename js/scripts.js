@@ -46,11 +46,14 @@ function addNewFeeling(text) {
   let newBreak = document.createElement("span");
   newBreak.textContent = " ";
   newBreak.classList.add("break");
+  newBreak.addEventListener("click", createBreak);
   if (poem.children.length == 0) {
     para = document.createElement("p");
   } else {
     para = poem.lastChild;
-    para.appendChild(newBreak.cloneNode(true));
+    let cloneBreak = newBreak.cloneNode(true);
+    cloneBreak.addEventListener("click", createBreak);
+    para.appendChild(cloneBreak);
   }
   let newFeeling = document.createElement("span");
   newFeeling.textContent = text;
@@ -92,23 +95,22 @@ breakBtn.addEventListener("click", () => {
     b.classList.add("break-active");
   }
 });
-for (let b of breaks) {
-  b.addEventListener("click", () => {
-    let els = [];
-    let el = b.nextSibling;
-    while (el) {
-      els.push(el);
-      el = el.nextSibling;
-    }
-    let para = document.createElement("p");
-    for (let el of els) {
-      para.appendChild(el);
-    }
-    poem.appendChild(para);
-    for (let b1 of breaks) {
-      b1.classList.remove("break-active");
-    }
-  });
+function createBreak(event) {
+  let b = event.target;
+  let els = [];
+  let el = b.nextSibling;
+  while (el) {
+    els.push(el);
+    el = el.nextSibling;
+  }
+  let para = document.createElement("p");
+  for (let el of els) {
+    para.appendChild(el);
+  }
+  poem.appendChild(para);
+  for (let b1 of breaks) {
+    b1.classList.remove("break-active");
+  }
 }
 
 // clear
