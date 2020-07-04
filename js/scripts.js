@@ -50,6 +50,12 @@ function newBreak() {
   newBreak.addEventListener("click", createBreak);
   return newBreak;
 }
+function scrollToBottom() {
+  window.scrollTo({
+    top: document.body.scrollHeight,
+    behavior: "smooth"
+  });
+}
 function addNewFeeling(text) {
   let para = null;
   if (poem.children.length == 0) {
@@ -73,10 +79,7 @@ function addNewFeeling(text) {
   if (poem.children.length == 0) {
     poem.appendChild(para);
   }
-  window.scrollTo({
-    top: document.body.scrollHeight,
-    behavior: "smooth"
-  });
+  scrollToBottom();
 }
 
 // handle
@@ -86,7 +89,7 @@ let handleImg = handleBtn.firstChild;
 handleBtn.addEventListener("click", (event) => {
   let toolbox = document.getElementById("toolbox");
   if (isExpanded) {
-    toolbox.style.height = "100px";
+    toolbox.style.height = "80px";
     handleImg.src = "../img/up-arrow.svg";
   } else {
     toolbox.style.height = "auto";
@@ -184,3 +187,8 @@ endingControls.addEventListener("change", (event) => {
     }
   }
 })
+
+// window resize
+window.addEventListener("resize", () => {
+  scrollToBottom();
+});

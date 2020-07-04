@@ -22,6 +22,8 @@ body {
   font-family: "IBM Plex Sans", sans-serif;
   background-color: var(--bg-col);
   color: var(--text-col);
+  display: flex;
+  flex-direction: column;
 }
 
 a {
@@ -46,8 +48,14 @@ a {
 /* POEM */
 
 main {
-  padding-bottom: 27vh;
+  /* padding-bottom: 27vh; */
+  padding-bottom: 47vh;
 }
+  @media (min-width: 800px) {
+    main {
+      padding-bottom: 27vh;
+    }
+  }
 
 #text {
   padding: 2.5rem;
@@ -62,7 +70,7 @@ main {
   }
 
 #title {
-  font-size: 5vh;
+  font-size: 4vh;
   line-height: 1;
 }
   @media (min-width: 800px) {
@@ -72,7 +80,7 @@ main {
   }
 
 #poem {
-  font-size: 8vh;
+  font-size: 5.5vh;
   line-height: 1;
   margin: .5em 0;
 }
@@ -95,7 +103,6 @@ main {
 .break {
   position: relative;
   width: .5em;
-
 }
 
 .break-active {
@@ -132,7 +139,6 @@ main {
   width: 100%;
   background-color: var(--mid-col);
   box-shadow: 1px 1px 10px 10px rgba(0,0,0,.04);
-  height: auto;
 }
 
 #handle {
@@ -187,7 +193,7 @@ main {
   font-family: "IBM Plex Serif", serif;
   font-size: 1em;
   color: var(--text-col);
-  border: .5px solid var(--text-col);
+  border: .5px solid currentcolor;
   border-radius: 4px;
   margin-bottom: 1em;
 }
