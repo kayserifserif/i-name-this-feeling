@@ -106,12 +106,32 @@ main {
   display: block;
   text-align: center;
   margin: -1rem auto 1rem;
+  background: none;
+  border: 0;
+}
+
+#handle:hover {
+  cursor: pointer;
 }
 
 .instruction {
   margin-bottom: 0;
   font-style: italic;
-  opacity: .7;
+  opacity: .8;
+}
+
+.control {
+  background: none;
+  border: 0;
+  font: inherit;
+  opacity: inherit;
+  color: var(--link-col);
+  text-decoration: underline;
+  padding: 0;
+}
+
+.control:hover {
+  cursor: pointer;
 }
 
 #choices {

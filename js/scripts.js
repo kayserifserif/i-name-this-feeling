@@ -66,7 +66,7 @@ handleBtn.addEventListener("click", (event) => {
   event.preventDefault();
   let toolbox = document.getElementById("toolbox");
   if (isExpanded) {
-    toolbox.style.height = "110px";
+    toolbox.style.height = "100px";
     handleImg.src = "../img/up-arrow.svg";
   } else {
     toolbox.style.height = "auto";
@@ -82,9 +82,9 @@ clearBtn.addEventListener("click", (event) => {
   poem.innerHTML = "";
 });
 
-// export
-let exportBtn = document.getElementById("export");
-exportBtn.addEventListener("click", (event) => {
+// download
+let downloadBtn = document.getElementById("download");
+downloadBtn.addEventListener("click", (event) => {
   event.preventDefault();
   html2canvas(text, {
     logging: false
