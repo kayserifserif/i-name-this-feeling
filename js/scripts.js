@@ -46,12 +46,12 @@ function addNewFeeling(text) {
   newFeeling.textContent = text;
   newFeeling.classList.add("feeling");
   poem.appendChild(newFeeling);
-  let newBreak = document.createElement("span");
-  newBreak.textContent = "\240";
-  newBreak.classList.add("break");
-  poem.appendChild(newBreak);
-  poem.appendChild(document.createTextNode("and"));
-  poem.appendChild(newBreak.cloneNode(true));
+  // let newBreak = document.createElement("span");
+  // newBreak.textContent = "\240";
+  // newBreak.classList.add("break");
+  // poem.appendChild(newBreak);
+  poem.appendChild(document.createTextNode(" and "));
+  // poem.appendChild(newBreak.cloneNode(true));
   window.scrollTo({
     top: document.body.scrollHeight,
     behavior: "smooth"
@@ -117,7 +117,8 @@ reverseBtn.addEventListener("click", (event) => {
 let sizeControls = document.getElementsByClassName("sizeControl");
 let title = document.getElementById("title");
 for (let sizeControl of sizeControls) {
-  sizeControl.addEventListener("click", () => {
+  sizeControl.addEventListener("click", (event) => {
+    event.preventDefault();
     let titleOrig = parseInt(getComputedStyle(title).fontSize);
     let poemOrig = parseInt(getComputedStyle(poem).fontSize);
     let mult = (sizeControl.id === "bigger") ? 1.1 : 0.9;
