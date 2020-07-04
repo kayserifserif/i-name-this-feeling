@@ -88,6 +88,32 @@ main {
   font-style: italic;
 }
 
+.break {
+  position: relative;
+  width: .5em;
+
+}
+
+.break-active {
+  background-color: var(--link-hover);
+}
+
+.break-active:hover {
+  cursor: pointer;
+}
+
+.break-active:active {
+  background-color: var(--link-active);
+}
+
+.break-active::after {
+  position: absolute;
+  content: "¶";
+  font-size: .25em;
+  top: 2.25em;
+  left: .2em;
+}
+
 /* TOOLBOX */
 
 #toolbox {

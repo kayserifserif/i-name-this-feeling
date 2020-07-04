@@ -42,16 +42,27 @@ for (let word of words) {
   });
 }
 function addNewFeeling(text) {
+  let para = null;
+  if (poem.children.length == 0) {
+    para = document.createElement("p");
+  } else {
+    para = poem.lastChild;
+  }
   let newFeeling = document.createElement("span");
   newFeeling.textContent = text;
   newFeeling.classList.add("feeling");
-  poem.appendChild(newFeeling);
-  // let newBreak = document.createElement("span");
+  para.appendChild(newFeeling);
+  let newBreak = document.createElement("span");
   // newBreak.textContent = "\240";
-  // newBreak.classList.add("break");
-  // poem.appendChild(newBreak);
-  poem.appendChild(document.createTextNode(" and "));
-  // poem.appendChild(newBreak.cloneNode(true));
+  newBreak.textContent = " ";
+  newBreak.classList.add("break");
+  para.appendChild(newBreak);
+  // poem.appendChild(document.createTextNode(" and "));
+  para.appendChild(document.createTextNode("and"));
+  para.appendChild(newBreak.cloneNode(true));
+  if (poem.children.length == 0) {
+    poem.appendChild(para);
+  }
   window.scrollTo({
     top: document.body.scrollHeight,
     behavior: "smooth"
@@ -63,7 +74,6 @@ let handleBtn = document.getElementById("handle");
 let isExpanded = true;
 let handleImg = handleBtn.firstChild;
 handleBtn.addEventListener("click", (event) => {
-  event.preventDefault();
   let toolbox = document.getElementById("toolbox");
   if (isExpanded) {
     toolbox.style.height = "100px";
@@ -75,17 +85,42 @@ handleBtn.addEventListener("click", (event) => {
   isExpanded = !isExpanded;
 });
 
+// break
+let breakBtn = document.getElementById("insertBreak");
+let breaks = document.getElementsByClassName("break");
+breakBtn.addEventListener("click", () => {
+  for (let b of breaks) {
+    b.classList.add("break-active");
+  }
+});
+for (let b of breaks) {
+  b.addEventListener("click", () => {
+    let els = [];
+    let el = b.nextSibling;
+    while (el) {
+      els.push(el);
+      el = el.nextSibling;
+    }
+    let para = document.createElement("p");
+    for (let el of els) {
+      para.appendChild(el);
+    }
+    poem.appendChild(para);
+    for (let b1 of breaks) {
+      b1.classList.remove("break-active");
+    }
+  });
+}
+
 // clear
 let clearBtn = document.getElementById("clear");
 clearBtn.addEventListener("click", (event) => {
-  event.preventDefault();
   poem.innerHTML = "";
 });
 
 // download
 let downloadBtn = document.getElementById("download");
 downloadBtn.addEventListener("click", (event) => {
-  event.preventDefault();
   html2canvas(text, {
     logging: false
   }).then(canvas => {
@@ -103,7 +138,6 @@ downloadBtn.addEventListener("click", (event) => {
 let reverseBtn = document.getElementById("reverse");
 let isLightMode = true;
 reverseBtn.addEventListener("click", (event) => {
-  event.preventDefault();
   var themeLink = document.getElementsByTagName("link")[1];
   if (isLightMode) {
     themeLink.href = "css/dark.css";
@@ -118,7 +152,6 @@ let sizeControls = document.getElementsByClassName("sizeControl");
 let title = document.getElementById("title");
 for (let sizeControl of sizeControls) {
   sizeControl.addEventListener("click", (event) => {
-    event.preventDefault();
     let titleOrig = parseInt(getComputedStyle(title).fontSize);
     let poemOrig = parseInt(getComputedStyle(poem).fontSize);
     let mult = (sizeControl.id === "bigger") ? 1.1 : 0.9;
