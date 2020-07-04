@@ -1,6 +1,8 @@
 let text = document.getElementById("text");
 let poem = document.getElementById("poem");
 let words = document.getElementsByClassName("word");
+let endingControls = document.getElementById("ending_controls");
+endingControls.reset();
 
 // randomise
 function shuffle(elems) { // https://j11y.io/javascript/shuffling-the-dom/
@@ -41,27 +43,33 @@ for (let word of words) {
     addNewFeeling(event.target.textContent);
   });
 }
-function addNewFeeling(text) {
-  let para = null;
+function newBreak() {
   let newBreak = document.createElement("span");
   newBreak.textContent = " ";
   newBreak.classList.add("break");
   newBreak.addEventListener("click", createBreak);
+  return newBreak;
+}
+function addNewFeeling(text) {
+  let para = null;
   if (poem.children.length == 0) {
     para = document.createElement("p");
   } else {
     para = poem.lastChild;
-    let cloneBreak = newBreak.cloneNode(true);
-    cloneBreak.addEventListener("click", createBreak);
-    para.appendChild(cloneBreak);
+    if (endingControls.isTrailingAnd.value === "noTrailingAnd") {
+      para.appendChild(newBreak());
+      para.appendChild(document.createTextNode("and"));
+    }
+    para.appendChild(newBreak());
   }
   let newFeeling = document.createElement("span");
   newFeeling.textContent = text;
   newFeeling.classList.add("feeling");
   para.appendChild(newFeeling);
-  para.appendChild(newBreak);
-  // poem.appendChild(document.createTextNode(" and "));
-  para.appendChild(document.createTextNode("and"));
+  if (endingControls.isTrailingAnd.value === "yesTrailingAnd") {
+    para.appendChild(newBreak());
+    para.appendChild(document.createTextNode("and"));
+  }
   if (poem.children.length == 0) {
     poem.appendChild(para);
   }
@@ -160,3 +168,19 @@ for (let sizeControl of sizeControls) {
     poem.style.fontSize = (poemOrig * mult) + "px";
   });
 }
+
+// trailing and
+endingControls.addEventListener("change", (event) => {
+  if (poem.children.length > 0) {
+    let val = event.target.value;
+    let para = poem.lastChild;
+    if (val === "yesTrailingAnd") {
+      para.appendChild(newBreak());
+      para.appendChild(document.createTextNode("and"));
+    } else {
+      let b = para.querySelector(".break:last-of-type");
+      b.nextSibling.remove(); // remove break
+      b.remove(); // remove and
+    }
+  }
+})

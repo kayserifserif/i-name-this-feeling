@@ -152,7 +152,12 @@ main {
   opacity: .8;
 }
 
+#toolbox > p {
+  margin-bottom: 0;
+}
+
 #controls {
+  margin-top: 0;
   display: flex;
   flex-direction: column;
 }
@@ -162,11 +167,11 @@ main {
     }
   }
 
-#controls > div {
+.controls_section {
   width: 100%;
 }
   @media (min-width: 800px) {
-    #controls > div {
+    .controls_section {
       width: 33.3%;
     }
   }

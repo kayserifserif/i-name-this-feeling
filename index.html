@@ -31,7 +31,7 @@
     <button id="handle" type="button"><img src="img/down-arrow.svg" width="10" height="10" role="presentation" alt=""></button>
     <p>One-syllable emotions, felt in waves turbulent, uneven, overlapping, and without end. To come: a collaborative poem, translations, sentiment analysis.</p>
     <div id="controls">
-      <div id="choose">
+      <div id="choose" class="controls_section">
         <p>Record as many emotions as you feel:</p>
         <div id="choose_controls">
           <button type="button" class="word">rage</button>
@@ -71,7 +71,7 @@
           <button type="button" class="word">scorn</button>
         </div>
       </div>
-      <div id="strats">
+      <div id="strats" class="controls_section">
         <p>Emotional coping strategies:</p>
         <div id="strats_controls">
           <button id="insertBreak" type="button"><span class="fas fa-paragraph"></span> Take a break</button>
@@ -82,9 +82,9 @@
           <button id="download" type="button"><span class="fas fa-file-export"></span> Take things offline</button>
         </div>
       </div>
-      <div id="ending">
-        <p>My emotions are currently:</p>
-        <div id="ending_controls">
+      <div id="ending" class="controls_section">
+        <p>Emotions are currently:</p>
+        <form id="ending_controls">
           <input type="radio" name="isTrailingAnd" id="yesTrailingAnd" value="yesTrailingAnd" checked>
           <label for="yesTrailingAnd">Unresolved</label>
           <input type="radio" name="isTrailingAnd" id="noTrailingAnd" value="noTrailingAnd">
