@@ -43,10 +43,15 @@ for (let word of words) {
 }
 function addNewFeeling(text) {
   let newFeeling = document.createElement("span");
-  newFeeling.classList.add("feeling");
   newFeeling.textContent = text;
+  newFeeling.classList.add("feeling");
   poem.appendChild(newFeeling);
-  poem.appendChild(document.createTextNode(" and "));
+  let newBreak = document.createElement("span");
+  newBreak.textContent = "\240";
+  newBreak.classList.add("break");
+  poem.appendChild(newBreak);
+  poem.appendChild(document.createTextNode("and"));
+  poem.appendChild(newBreak.cloneNode(true));
   window.scrollTo({
     top: document.body.scrollHeight,
     behavior: "smooth"
@@ -91,7 +96,6 @@ exportBtn.addEventListener("click", (event) => {
     anchor.target = "_blank";
     anchor.download = "poem.png";
     anchor.click();
-    // document.body.appendChild(canvas);
   });
 });
 
@@ -99,25 +103,25 @@ exportBtn.addEventListener("click", (event) => {
 let reverseBtn = document.getElementById("reverse");
 let isLightMode = true;
 reverseBtn.addEventListener("click", (event) => {
-  // console.log(event);
   event.preventDefault();
   var themeLink = document.getElementsByTagName("link")[1];
   if (isLightMode) {
     themeLink.href = "css/dark.css";
-    // document.documentElement.style.setProperty("--bg-col", "var(--dark)");
-    // document.documentElement.style.setProperty("--text-col", "var(--light)");
-    // document.documentElement.style.setProperty("--mid-col", "var(--lessdark)");
-    // document.documentElement.style.setProperty("--link-col", "var(--darklink)");
-    // document.documentElement.style.setProperty("--link-hover", "var(--darklinkhover)");
-    // document.documentElement.style.setProperty("--link-active", "var(--darklinkactive)");
   } else {
     themeLink.href = "css/light.css";
-    // document.documentElement.style.setProperty("--bg-col", "var(--light)");
-    // document.documentElement.style.setProperty("--text-col", "var(--dark)");
-    // document.documentElement.style.setProperty("--mid-col", "var(--lesslight)");
-    // document.documentElement.style.setProperty("--link-col", "var(--lightlink)");
-    // document.documentElement.style.setProperty("--link-hover", "var(--lightlinkhover)");
-    // document.documentElement.style.setProperty("--link-active", "var(--lightlinkactive)");
   }
   isLightMode = !isLightMode;
 });
+
+// font size control
+let sizeControls = document.getElementsByClassName("sizeControl");
+let title = document.getElementById("title");
+for (let sizeControl of sizeControls) {
+  sizeControl.addEventListener("click", () => {
+    let titleOrig = parseInt(getComputedStyle(title).fontSize);
+    let poemOrig = parseInt(getComputedStyle(poem).fontSize);
+    let mult = (sizeControl.id === "bigger") ? 1.1 : 0.9;
+    title.style.fontSize = (titleOrig * mult) + "px";
+    poem.style.fontSize = (poemOrig * mult) + "px";
+  });
+}
