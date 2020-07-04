@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@xz/fonts@1/serve/ibm-plex-serif.min.css"> 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@xz/fonts@1/serve/ibm-plex-sans.min.css"> 
   <link rel="icon" href="favicon.svg">
+  <script src="https://kit.fontawesome.com/50b1346d06.js" crossorigin="anonymous"></script>
 </head>
 <body>
   <!-- <nav>
@@ -28,46 +29,69 @@
   </main>
   <div id="toolbox">
     <button id="handle" type="button"><img src="img/down-arrow.svg" width="10" height="10" role="presentation" alt=""></button>
-    <div id="choices">
-      <button type="button" class="word">rage</button>
-      <button type="button" class="word">fear</button>
-      <button type="button" class="word">grief</button>
-      <button type="button" class="word">awe</button>
-      <button type="button" class="word">pain</button>
-      <button type="button" class="word">gloom</button>
-      <button type="button" class="word">hurt</button>
-      <button type="button" class="word">dread</button>
-      <button type="button" class="word">angst</button>
-      <button type="button" class="word">nerves</button>
-      <button type="button" class="word">stress</button>
-      <button type="button" class="word">pride</button>
-      <button type="button" class="word">shock</button>
-      <button type="button" class="word">woe</button>
-      <button type="button" class="word">thanks</button>
-      <button type="button" class="word">want</button>
-      <button type="button" class="word">need</button>
-      <button type="button" class="word">thirst</button>
-      <button type="button" class="word">doubt</button>
-      <button type="button" class="word">trust</button>
-      <button type="button" class="word">strength</button>
-      <button type="button" class="word">nerve</button>
-      <button type="button" class="word">grit</button>
-      <button type="button" class="word">drive</button>
-      <button type="button" class="word">hope</button>
-      <button type="button" class="word">faith</button>
-      <button type="button" class="word">loss</button>
-      <button type="button" class="word">warmth</button>
-      <button type="button" class="word">love</button>
-      <button type="button" class="word">joy</button>
-      <button type="button" class="word">bliss</button>
-      <button type="button" class="word">ease</button>
-      <button type="button" class="word">calm</button>
-      <button type="button" class="word">guilt</button>
-      <button type="button" class="word">scorn</button>
+    <p>One-syllable emotions, felt in waves turbulent, uneven, overlapping, and without end. To come: a collaborative poem, translations, sentiment analysis.</p>
+    <div id="controls">
+      <div id="choose">
+        <p>Record as many emotions as you feel:</p>
+        <div id="choose_controls">
+          <button type="button" class="word">rage</button>
+          <button type="button" class="word">fear</button>
+          <button type="button" class="word">grief</button>
+          <button type="button" class="word">awe</button>
+          <button type="button" class="word">pain</button>
+          <button type="button" class="word">gloom</button>
+          <button type="button" class="word">hurt</button>
+          <button type="button" class="word">dread</button>
+          <button type="button" class="word">angst</button>
+          <button type="button" class="word">nerves</button>
+          <button type="button" class="word">stress</button>
+          <button type="button" class="word">pride</button>
+          <button type="button" class="word">shock</button>
+          <button type="button" class="word">woe</button>
+          <button type="button" class="word">thanks</button>
+          <button type="button" class="word">want</button>
+          <button type="button" class="word">need</button>
+          <button type="button" class="word">thirst</button>
+          <button type="button" class="word">doubt</button>
+          <button type="button" class="word">trust</button>
+          <button type="button" class="word">strength</button>
+          <button type="button" class="word">nerve</button>
+          <button type="button" class="word">grit</button>
+          <button type="button" class="word">drive</button>
+          <button type="button" class="word">hope</button>
+          <button type="button" class="word">faith</button>
+          <button type="button" class="word">loss</button>
+          <button type="button" class="word">warmth</button>
+          <button type="button" class="word">love</button>
+          <button type="button" class="word">joy</button>
+          <button type="button" class="word">bliss</button>
+          <button type="button" class="word">ease</button>
+          <button type="button" class="word">calm</button>
+          <button type="button" class="word">guilt</button>
+          <button type="button" class="word">scorn</button>
+        </div>
+      </div>
+      <div id="strats">
+        <p>Emotional coping strategies:</p>
+        <div id="strats_controls">
+          <button id="insertBreak" type="button"><span class="fas fa-paragraph"></span> Take a break</button>
+          <button id="clear" type="button"><span class="fas fa-trash-alt"></span> Clear your head</button>
+          <button id="reverse" type="button"><span class="fas fa-adjust"></span> Find a change of scenery</button>
+          <button id="bigger" class="sizeControl" type="button"><span class="fas fa-plus"></span> Grapple with things up close</button>
+          <button id="smaller" class="sizeControl" type="button"><span class="fas fa-minus"></span> See the bigger picture</button>
+          <button id="download" type="button"><span class="fas fa-file-export"></span> Take things offline</button>
+        </div>
+      </div>
+      <div id="ending">
+        <p>My emotions are currently:</p>
+        <div id="ending_controls">
+          <input type="radio" name="isTrailingAnd" id="yesTrailingAnd" value="yesTrailingAnd" checked>
+          <label for="yesTrailingAnd">Unresolved</label>
+          <input type="radio" name="isTrailingAnd" id="noTrailingAnd" value="noTrailingAnd">
+          <label for="noTrailingAnd">At capacity</label>
+        </div>
+      </div>
     </div>
-    <p class="instruction">One-syllable emotions, felt in waves turbulent, uneven, overlapping, and without end.</p>
-    <p class="instruction">Add words by clicking, insert a <button id="insertBreak" class="control" type="button">break</button>, or <button id="clear" class="control" type="button">clear</button> the poem. Want to <button id="reverse" class="control" type="button">reverse</button> the page colours or make the poem font <button id="bigger" class="control sizeControl" type="button">bigger</button> or <button id="smaller" class="control sizeControl" type="button">smaller</button>? You can also <button id="download" class="control" type="button">download</button> an image of your poem.</p>
-    <p class="instruction">To come: a collaborative poem, translations, sentiment analysis.</p>
   </div>
   <script src="js/html2canvas.min.js"></script>
   <script src="js/scripts.js"></script>

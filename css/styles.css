@@ -82,6 +82,10 @@ main {
     }
   }
 
+#poem p {
+  margin: 0 0 .5em 0;
+}
+
 .feeling {
   font-family: "IBM Plex Serif", serif;
   font-weight: 500;
@@ -114,6 +118,10 @@ main {
   left: .2em;
 }
 
+.fas {
+  font-size: .9em;
+}
+
 /* TOOLBOX */
 
 #toolbox {
@@ -125,7 +133,6 @@ main {
   background-color: var(--mid-col);
   box-shadow: 1px 1px 10px 10px rgba(0,0,0,.04);
   height: auto;
-  /* transition: .3s ease-in-out height; */
 }
 
 #handle {
@@ -140,29 +147,33 @@ main {
   cursor: pointer;
 }
 
-.instruction {
-  margin-bottom: 0;
+#toolbox p {
   font-style: italic;
   opacity: .8;
 }
 
-.control {
-  background: none;
-  border: 0;
-  font: inherit;
-  opacity: inherit;
-  color: var(--link-col);
-  text-decoration: underline;
-  padding: 0;
-}
-
-.control:hover {
-  cursor: pointer;
-}
-
-#choices {
+#controls {
   display: flex;
+  flex-direction: column;
+}
+  @media (min-width: 800px) {
+    #controls {
+      flex-direction: row;
+    }
+  }
+
+#controls > div {
+  width: 100%;
+}
+  @media (min-width: 800px) {
+    #controls > div {
+      width: 33.3%;
+    }
+  }
+
+#choose_controls {
   overflow: scroll;
+  height: 75px;
 }
 
 .word {
@@ -173,6 +184,7 @@ main {
   color: var(--text-col);
   border: .5px solid var(--text-col);
   border-radius: 4px;
+  margin-bottom: 1em;
 }
 
 .word:not(:last-of-type) {
