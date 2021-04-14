@@ -90,10 +90,10 @@ handleBtn.addEventListener("click", (event) => {
   let toolbox = document.getElementById("toolbox");
   if (isExpanded) {
     toolbox.style.height = "80px";
-    handleImg.src = "../img/up-arrow.svg";
+    handleImg.src = "img/up-arrow.svg";
   } else {
     toolbox.style.height = "auto";
-    handleImg.src = "../img/down-arrow.svg";
+    handleImg.src = "img/down-arrow.svg";
   }
   isExpanded = !isExpanded;
 });
