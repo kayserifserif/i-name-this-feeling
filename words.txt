@@ -34,3 +34,6 @@ calm
 guilt
 scorn
 peace
+lust
+spite
+wrath
