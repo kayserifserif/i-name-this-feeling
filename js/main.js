@@ -11,7 +11,7 @@ const LINKING_TEMPLATE = document.querySelector(".linking-word");
 LINKING_TEMPLATE.remove();
 
 const WORDS_CONTAINER = document.querySelector("#choose-controls");
-fetch("words.txt")
+fetch("/assets/words.txt")
   .then(r => r.text())
   .then(text => {
     // create list of words
@@ -125,7 +125,7 @@ handleBtn.addEventListener("click", (event) => {
   isExpanded = !isExpanded;
   toolbox.classList.toggle("expanded", isExpanded);
   const handleImg = handleBtn.querySelector("img");
-  handleImg.src = isExpanded ? "img/down-arrow.svg" : "img/up-arrow.svg";
+  handleImg.src = isExpanded ? "/img/down-arrow.svg" : "/img/up-arrow.svg";
 });
 
 // break
