@@ -17,13 +17,25 @@
   box-sizing: border-box;
 }
 
+html,
 body {
   margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+body {
   font-family: "IBM Plex Sans", sans-serif;
-  background-color: var(--bg-col);
+  /* background-color: var(--bg-col); */
+  background-color: var(--mid-col);
   color: var(--text-col);
   display: flex;
   flex-direction: column;
+}
+@media (min-width: 800px) {
+  body {
+    flex-direction: row;
+  }
 }
 
 a {
@@ -53,44 +65,70 @@ main {
 }
   @media (min-width: 800px) {
     main {
-      padding-bottom: 27vh;
+      /* padding-bottom: 27vh; */
+      padding: 0;
+      /* flex: 1; */
+      width: calc(100vw - 350px);
+      margin: 50px;
+      display: flex;
+      flex-direction: column;
+      /* background-color: var(--light); */
+      gap: 20px;
     }
   }
 
-#text {
+.about {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.5em;
+}
+
+.about p {
+  margin: 0;
+}
+
+.logo {
+  height: 1em;
+  margin-bottom: -0.1em;
+}
+
+.text {
   padding: 2.5rem;
+  /* background-color: var(--bg-col); */
   background-color: var(--bg-col);
-  width: max-content;
-  max-width: 100%;
+  /* width: max-content; */
+  /* max-width: 100%; */
 }
   @media (min-width: 800px) {
-    #text {
+    .text {
       padding: 2rem 5rem 3.5rem;
+      flex: 1;
     }
   }
 
-#title {
+.title {
   font-size: 4vh;
   line-height: 1;
 }
   @media (min-width: 800px) {
-    #title {
+    .title {
       font-size: 6vh;
     }
   }
 
-#poem {
+.poem {
   font-size: 5.5vh;
   line-height: 1;
   margin: .5em 0;
 }
   @media (min-width: 800px) {
-    #poem {
+    .poem {
       font-size: 10vh;
     }
   }
 
-#poem p {
+.poem p {
   margin: 0 0 .5em 0;
 }
 
@@ -131,14 +169,37 @@ main {
 
 /* TOOLBOX */
 
-#toolbox {
+.toolbox {
   position: fixed;
   bottom: 0;
   left: 0;
-  padding: 2rem;
+  /* padding: 2rem; */
+  padding: 50px 50px 50px 0;
   width: 100%;
-  background-color: var(--mid-col);
-  box-shadow: 1px 1px 10px 10px rgba(0,0,0,.04);
+  /* background-color: var(--mid-col); */
+  /* box-shadow: 1px 1px 10px 10px rgba(0,0,0,.04); */
+
+  height: 80px;
+}
+.toolbox.expanded {
+  height: auto;
+}
+@media (min-width: 800px) {
+  .toolbox {
+    position: relative;
+    /* height: 100%; */
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    width: 50px;
+  }
+  
+  .toolbox.expanded {
+    /* width: 350px; */
+    width: 350px;
+    height: 100vh;
+  }
 }
 
 #handle {
@@ -148,54 +209,82 @@ main {
   background: none;
   border: 0;
 }
+@media (min-width: 800px) {
+  #handle {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translate(0, -50%) rotate(-90deg);
+  }
+}
 
 #handle:hover {
   cursor: pointer;
 }
 
-#toolbox p {
+.toolbox p {
   font-style: italic;
   opacity: .8;
 }
 
-#toolbox > p {
+.toolbox > p {
   margin-bottom: 0;
 }
 
-#controls {
+.controls {
   margin-top: 0;
   display: flex;
   flex-direction: column;
+  gap: 50px;
 }
   @media (min-width: 800px) {
-    #controls {
-      flex-direction: row;
+    .controls {
+      width: 100%;
+      /* flex-direction: row; */
+      flex: 1;
+      overflow: hidden;
     }
   }
 
-.controls_section {
+.controls-section {
   width: 100%;
 }
   @media (min-width: 800px) {
-    .controls_section {
-      width: 33.3%;
+    .controls-section {
+      /* width: 33.3%; */
     }
   }
 
-#choose_controls {
+#choose {
+  flex: 1;
+  /* display: flex; */
+  /* flex-direction: column; */
+  overflow: hidden;
+}
+
+#choose-controls {
   overflow: scroll;
   height: 75px;
 }
+@media (min-width: 800px) {
+  #choose-controls {
+    /* flex: 1; */
+    height: 100%;
+  }
+}
 
 .word {
-  padding: .5em 2em;
+  appearance: none;
   background: none;
+  /* border: .5px solid currentcolor; */
+  border: none;
+  /* padding: .5em 2em; */
+  /* padding: 0.2em 0.5em; */
   font-family: "IBM Plex Serif", serif;
-  font-size: 1em;
+  font-size: 1.5em;
   color: var(--text-col);
-  border: .5px solid currentcolor;
-  border-radius: 4px;
-  margin-bottom: 1em;
+  /* border-radius: 4px; */
+  /* margin-bottom: 1em; */
 }
 
 .word:not(:last-of-type) {
@@ -204,9 +293,40 @@ main {
 
 .word:hover {
   cursor: pointer;
-  background-color: var(--link-hover);
+  /* background-color: var(--link-hover); */
+  font-style: italic;
+  font-size: 1.6em;
+  line-height: 1;
+  margin-right: 1.1em;
 }
 
 .word:active {
-  background-color: var(--link-active);
+  /* background-color: var(--link-active); */
+}
+
+#strats-controls {
+  display: flex;
+  flex-direction: column;
+  /* flex-wrap: wrap; */
+  gap: 1em;
+}
+
+#strats-controls button {
+  appearance: none;
+  background: none;
+  border: none;
+  font-size: 1em;
+  font-family: "IBM Plex Sans", sans-serif;
+  cursor: pointer;
+  text-align: left;
+  color: var(--text-col);
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 0.5em;
+  align-items: center;
+}
+
+#strats-controls button:hover {
+  font-style: italic;
 }
