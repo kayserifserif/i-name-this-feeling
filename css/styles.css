@@ -42,6 +42,10 @@ a {
   color: var(--link-col);
 }
 
+.hidden {
+  display: none;
+}
+
 /* NAV */
 
 /* #nav {
@@ -329,4 +333,52 @@ main {
 
 #strats-controls button:hover {
   font-style: italic;
+}
+
+.linking-word {
+  display: inline-block;  
+  position: relative;
+}
+
+.linking-word .select-linking {
+  position: absolute;
+  width: 0;
+  height: 0;
+  opacity: 0;
+  overflow: hidden;
+}
+
+.linking-word .linking-options {
+  display: none;
+}
+
+.linking-word.expanded .linking-options {
+  display: flex;
+  flex-direction: column;
+  align-content: flex-start;
+  position: absolute;
+  top: 1em;
+  z-index: 1;
+  opacity: 0.8;
+  background-color: var(--bg-col);
+  padding: 0 0.5em;
+  margin-left: -0.5em;
+}
+
+.linking-word button {
+  appearance: none;
+  background: none;
+  border: none;
+  margin: 0;
+  padding: 0;
+  font-size: 1em;
+  font-family: "IBM Plex Sans", sans-serif;
+  cursor: pointer;
+  text-align: left;
+  line-height: 1;
+}
+
+.linking-word .option {
+  width: max-content;
+  opacity: 0.5;
 }

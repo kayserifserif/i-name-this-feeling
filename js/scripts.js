@@ -6,6 +6,10 @@ const endingControls = document.getElementById("ending-controls");
 
 const WORD_TEMPLATE = document.querySelector(".word");
 WORD_TEMPLATE.remove();
+
+const LINKING_TEMPLATE = document.querySelector(".linking-word");
+LINKING_TEMPLATE.remove();
+
 const WORDS_CONTAINER = document.querySelector("#choose-controls");
 fetch("words.txt")
   .then(r => r.text())
@@ -68,7 +72,8 @@ function addNewFeeling(text) {
     para = poem.lastChild;
     if (endingControls.isTrailingAnd.value === "noTrailingAnd") {
       para.appendChild(newBreak());
-      para.appendChild(document.createTextNode("and"));
+      const link = createLinkingWord();
+      para.appendChild(link);
     }
     para.appendChild(newBreak());
   }
@@ -79,13 +84,37 @@ function addNewFeeling(text) {
   para.appendChild(newFeeling);
   if (endingControls.isTrailingAnd.value === "yesTrailingAnd") {
     para.appendChild(newBreak());
-    para.appendChild(document.createTextNode("and"));
+    const link = createLinkingWord();
+    para.appendChild(link);
   }
   if (poem.children.length == 0) {
     poem.appendChild(para);
   }
 
   scrollToBottom();
+}
+
+function createLinkingWord() {
+  const link = LINKING_TEMPLATE.cloneNode(true);
+
+  const displayWord = link.querySelector(".linking-word-display");
+  displayWord.addEventListener("click", () => {
+    link.classList.toggle("expanded");
+  });
+
+  const options = link.querySelectorAll(".option");
+  options.forEach(option => {
+    option.classList.remove("hidden");
+    if (option.innerText === displayWord.innerText) {
+      option.classList.add("hidden");
+    }
+    option.addEventListener("click", () => {
+      displayWord.innerText = option.innerText;
+      link.classList.remove("expanded");
+    });
+  });
+
+  return link;
 }
 
 // handle
@@ -109,6 +138,8 @@ breakBtn.addEventListener("click", () => {
 });
 function createBreak(event) {
   const b = event.target;
+  if (!b.classList.contains("break-active")) return;
+
   const els = [];
   let el = b.nextSibling;
   while (el) {
@@ -178,7 +209,8 @@ endingControls.addEventListener("change", (event) => {
     const para = poem.lastChild;
     if (val === "yesTrailingAnd") {
       para.appendChild(newBreak());
-      para.appendChild(document.createTextNode("and"));
+      const link = createLinkingWord();
+      para.appendChild(link);
     } else {
       const b = para.querySelector(".break:last-of-type");
       b.nextSibling.remove(); // remove break
@@ -192,9 +224,12 @@ window.addEventListener("resize", () => {
   scrollToBottom();
 });
 
-const aboutBtn = document.querySelector(".about-btn");
-const aboutDialog = document.querySelector(".about");
-console.log(aboutBtn, aboutDialog);
-aboutBtn.addEventListener("click", () => {
-  aboutDialog.showModal();
+window.addEventListener("click", e => {
+  const target = e.target;
+  if (!target.closest(".linking-word")) {
+    const expanded = document.querySelector(".linking-word.expanded");
+    if (expanded) {
+      expanded.classList.remove("expanded");
+    }
+  }
 });
