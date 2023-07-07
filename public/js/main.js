@@ -67,16 +67,19 @@ function addNewFeeling(text) {
     para = PARAGRAPH_TEMPLATE.cloneNode(true);
   } else {
     para = poem.lastChild;
-    if (endingControls.hasTrailingLink.value === "false") {
+    if (para.children.length > 0) {
+      if (endingControls.hasTrailingLink.value === "false") {
+        para.appendChild(newBreak());
+        const link = createLinkingWord();
+        para.appendChild(link);
+      }
       para.appendChild(newBreak());
-      const link = createLinkingWord();
-      para.appendChild(link);
     }
-    para.appendChild(newBreak());
   }
 
   const newFeeling = FEELING_TEMPLATE.cloneNode(true);
   newFeeling.innerText = text;
+  newFeeling.addEventListener("click", () => removeFeeling(newFeeling));
   para.appendChild(newFeeling);
   if (endingControls.hasTrailingLink.value === "true") {
     para.appendChild(newBreak());
@@ -88,6 +91,22 @@ function addNewFeeling(text) {
   }
 
   scrollToBottom();
+}
+
+function removeFeeling(feeling) {
+  const followingBreak = feeling.nextSibling;
+  if (followingBreak) {
+    const followingLink = followingBreak.nextSibling;
+    followingLink.remove();
+    followingBreak.remove();
+  }
+
+  const precedingBreak = feeling.previousElementSibling;
+  if (precedingBreak) {
+    precedingBreak.remove();
+  }
+
+  feeling.remove();
 }
 
 function newBreak() {
@@ -121,6 +140,8 @@ function scrollToBottom() {
 
 function clearPoem() {
   poem.innerHTML = "";
+  const para = PARAGRAPH_TEMPLATE.cloneNode(true);
+  poem.appendChild(para);
 }
 
 function createLinkingWord() {

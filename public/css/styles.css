@@ -182,10 +182,45 @@ main {
 }
 
 .feeling {
+  appearance: none;
+  background: none;
+  border: none;
+  margin: 0;
+  padding: 0;
+  color: var(--fg-col);
+  font-size: 1em;
   font-family: "IBM Plex Serif", serif;
   font-weight: 500;
   font-style: italic;
+  cursor: pointer;
+  position: relative;
 }
+
+.feeling:hover::after,
+.feeling:active::after,
+.feeling:focus::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background-color: currentColor;
+  opacity: 0.9;
+  animation: 0.15s ease-out extend;
+}
+@keyframes extend {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+/* .feeling:hover {
+  text-decoration: line-through;
+} */
 
 .break {
   position: relative;
@@ -320,38 +355,29 @@ main {
 .word {
   appearance: none;
   background: none;
-  /* border: .5px solid currentcolor; */
   border: none;
-  /* padding: .5em 2em; */
-  /* padding: 0.2em 0.5em; */
   font-family: "IBM Plex Serif", serif;
   font-size: 1.5em;
   color: var(--fg-col);
-  /* border-radius: 4px; */
-  /* margin-bottom: 1em; */
 }
 
 .word:not(:last-of-type) {
   margin-right: 1em;
 }
 
-.word:hover {
+.word:hover,
+.word:active,
+.word:focus {
   cursor: pointer;
-  /* background-color: var(--link-hover); */
   font-style: italic;
   font-size: 1.6em;
   line-height: 1;
   margin-right: 1.1em;
 }
 
-.word:active {
-  /* background-color: var(--link-active); */
-}
-
 #strats-controls {
   display: flex;
   flex-direction: column;
-  /* flex-wrap: wrap; */
   gap: 1em;
 }
 
@@ -424,11 +450,22 @@ main {
 
 .linking-word-display {
   color: var(--fg-sec-col);
+  opacity: 0.8;
+  transition: 0.15s opacity;
+}
+
+.linking-word-display:hover {
+  opacity: 0.9;
 }
 
 .linking-word .option {
   width: max-content;
   opacity: 0.5;
+  transition: 0.15s opacity;
+}
+
+.linking-word .option:hover {
+  opacity: 0.7;
 }
 
 /* ARCHIVE */
