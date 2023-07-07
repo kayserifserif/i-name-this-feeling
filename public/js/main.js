@@ -218,6 +218,8 @@ function changeSize(bigger) {
 }
 
 function download() {
+  const title = document.querySelector("#title-input").value;
+
   html2canvas(text, {
     logging: false
   }).then(canvas => {
@@ -225,10 +227,17 @@ function download() {
     // https://stackoverflow.com/a/37673039
     const anchor = document.createElement("a");
     anchor.href = imageURI;
-    anchor.target = "_blank";
-    anchor.download = "poem.png";
+    anchor.download = `${title}.txt`;
     anchor.click();
   });
+
+  const poemText = getPoemText();
+  const blob = new Blob([poemText], { type: "text/plain;charset=UTF-8" });
+  const url = URL.createObjectURL(blob);
+  const anchor = document.createElement("a");
+  anchor.href = url;
+  anchor.download = `${title}.txt`;
+  anchor.click();
 }
 
 function reviewSubmission() {
@@ -251,7 +260,7 @@ function cancelSubmission() {
   document.querySelector(".toolbox").classList.remove("hidden");
 }
 
-function submit() {
+function getPoemText() {
   const paras = Array.from(document.querySelectorAll(".poem .paragraph"));
   const lines = paras.map(para => {
     const els = Array.from(para.querySelectorAll(".feeling, .linking-word-display"));
@@ -260,7 +269,11 @@ function submit() {
     return line;
   });
   const text = lines.join("\n");
+  return text;
+}
 
+function submit() {
+  const text = getPoemText();
   const title = document.querySelector("#title-input").value;
   const author = document.querySelector("#author-input").value;
 
