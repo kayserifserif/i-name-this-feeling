@@ -8,15 +8,18 @@
       <div class="archive">
         <% data.reverse().forEach(entry => { %>
           <div class="entry">
-            <div class="entry-timestamp">
-              <%= entry.created_at.toLocaleString() %>
+            <div class="entry-title">
+              <% if (entry.title) { %>
+                <%= entry.title %>
+              <% } %>
             </div>
             <div class="entry-author">
               <% if (entry.author) { %>
                 <%= entry.author %>
-              <% } else { %>
-                Anonymous
               <% } %>
+            </div>
+            <div class="entry-timestamp">
+              <%= entry.created_at.toLocaleString() %>
             </div>
             <div class="entry-text poem">
               <% for (let i = 0; i < entry.text.length; i++) { %>

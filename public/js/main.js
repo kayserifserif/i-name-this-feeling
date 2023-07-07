@@ -224,7 +224,7 @@ function submit() {
     })
   });
 
-  const submitBtn = document.querySelector("#submit");
+  const submitBtn = document.querySelector("#submit-btn");
   submitBtn.setAttribute("disabled", "");
 
   const submitLabel = submitBtn.querySelector(".control-label");
