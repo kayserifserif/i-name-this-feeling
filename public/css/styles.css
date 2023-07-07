@@ -2,9 +2,9 @@
 
 :root {
   --dark: #444;
-  --lessdark: #373737;
+  --lessdark: #808080;
   --light: #fff;
-  --lesslight: #f9f9f9;
+  --lesslight: #f7f7f7;
   --lightlink: blue;
   --lightlinkhover: aliceblue;
   --lightlinkactive: #d5e9fb;
@@ -26,9 +26,8 @@ body {
 
 body {
   font-family: "IBM Plex Sans", sans-serif;
-  /* background-color: var(--bg-col); */
-  background-color: var(--mid-col);
-  color: var(--text-col);
+  background-color: var(--bg-sec-col);
+  color: var(--fg-col);
   display: flex;
   flex-direction: column;
 }
@@ -39,8 +38,7 @@ body {
 }
 
 a {
-  /* color: var(--link-col); */
-  color: var(--text-col);
+  color: var(--fg-col);
   opacity: 0.8;
 }
 
@@ -80,7 +78,7 @@ main {
       /* padding-bottom: 27vh; */
       padding: 0;
       /* flex: 1; */
-      width: calc(100vw - 350px);
+      flex: 1;
       margin: 50px;
       display: flex;
       flex-direction: column;
@@ -88,22 +86,6 @@ main {
       gap: 20px;
     }
   }
-
-.about {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  gap: 0.5em;
-}
-
-.about p {
-  margin: 0;
-}
-
-.logo {
-  height: 1em;
-  margin-bottom: -0.1em;
-}
 
 .text {
   padding: 2.5rem;
@@ -114,7 +96,8 @@ main {
 }
   @media (min-width: 800px) {
     .text {
-      padding: 2rem 5rem 3.5rem;
+      /* padding: 2rem 5rem 3.5rem; */
+      padding: 5rem;
       flex: 1;
     }
   }
@@ -122,6 +105,7 @@ main {
 .title {
   font-size: 4vh;
   line-height: 1;
+  margin: 0;
 }
   @media (min-width: 800px) {
     .title {
@@ -140,8 +124,12 @@ main {
     }
   }
 
-.poem p {
+.paragraph {
   margin: 0 0 .5em 0;
+}
+
+.paragraph > div {
+  display: inline-block;
 }
 
 .feeling {
@@ -185,11 +173,8 @@ main {
   position: fixed;
   bottom: 0;
   left: 0;
-  /* padding: 2rem; */
   padding: 50px 50px 50px 0;
   width: 100%;
-  /* background-color: var(--mid-col); */
-  /* box-shadow: 1px 1px 10px 10px rgba(0,0,0,.04); */
 
   height: 80px;
 }
@@ -199,7 +184,6 @@ main {
 @media (min-width: 800px) {
   .toolbox {
     position: relative;
-    /* height: 100%; */
     height: 100vh;
     display: flex;
     flex-direction: column;
@@ -208,7 +192,6 @@ main {
   }
   
   .toolbox.expanded {
-    /* width: 350px; */
     width: 350px;
     height: 100vh;
   }
@@ -236,7 +219,7 @@ main {
 
 .toolbox p {
   font-style: italic;
-  opacity: .8;
+  color: var(--fg-sec-col);
 }
 
 .toolbox > p {
@@ -294,7 +277,7 @@ main {
   /* padding: 0.2em 0.5em; */
   font-family: "IBM Plex Serif", serif;
   font-size: 1.5em;
-  color: var(--text-col);
+  color: var(--fg-col);
   /* border-radius: 4px; */
   /* margin-bottom: 1em; */
 }
@@ -331,7 +314,7 @@ main {
   font-family: "IBM Plex Sans", sans-serif;
   cursor: pointer;
   text-align: left;
-  color: var(--text-col);
+  color: var(--fg-col);
   margin: 0;
   padding: 0;
   display: flex;
@@ -344,7 +327,6 @@ main {
 }
 
 .linking-word {
-  display: inline-block;  
   position: relative;
 }
 
@@ -386,7 +368,52 @@ main {
   line-height: 1;
 }
 
+.linking-word-display {
+  color: var(--fg-sec-col);
+}
+
 .linking-word .option {
   width: max-content;
   opacity: 0.5;
+}
+
+/* ARCHIVE */
+
+.archive {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.entry {
+  /* opacity: 0.5; */
+  color: var(--fg-sec-col);
+}
+
+.entry .poem {
+  font-size: 1em;
+  color: var(--fg-col);
+  height: 200px;
+  overflow-y: auto;
+}
+
+.entry .poem 
+
+/* FOOTER */
+
+.footer {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.5em;
+  color: var(--fg-sec-col);
+}
+
+.footer p {
+  margin: 0;
+}
+
+.logo {
+  height: 1em;
+  margin-bottom: -0.1em;
 }

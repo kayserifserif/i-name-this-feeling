@@ -7,6 +7,15 @@ const endingControls = document.getElementById("ending-controls");
 const WORD_TEMPLATE = document.querySelector(".word");
 WORD_TEMPLATE.remove();
 
+const PARAGRAPH_TEMPLATE = document.querySelector(".paragraph");
+PARAGRAPH_TEMPLATE.remove();
+
+const FEELING_TEMPLATE = document.querySelector(".feeling");
+FEELING_TEMPLATE.remove();
+
+const BREAK_TEMPLATE = document.querySelector(".break");
+BREAK_TEMPLATE.remove();
+
 const LINKING_TEMPLATE = document.querySelector(".linking-word");
 LINKING_TEMPLATE.remove();
 
@@ -50,9 +59,7 @@ function shuffle(array) {
 }
 
 function newBreak() {
-  const newBreak = document.createElement("span");
-  newBreak.textContent = " ";
-  newBreak.classList.add("break");
+  const newBreak = BREAK_TEMPLATE.cloneNode(true);
   newBreak.addEventListener("click", createBreak);
   return newBreak;
 }
@@ -66,8 +73,8 @@ function scrollToBottom() {
 
 function addNewFeeling(text) {
   let para = null;
-  if (poem.children.length == 0) {
-    para = document.createElement("p");
+  if (poem.children.length === 0) {
+    para = PARAGRAPH_TEMPLATE.cloneNode(true);
   } else {
     para = poem.lastChild;
     if (endingControls.isTrailingAnd.value === "noTrailingAnd") {
@@ -78,16 +85,15 @@ function addNewFeeling(text) {
     para.appendChild(newBreak());
   }
 
-  const newFeeling = document.createElement("span");
-  newFeeling.textContent = text;
-  newFeeling.classList.add("feeling");
+  const newFeeling = FEELING_TEMPLATE.cloneNode(true);
+  newFeeling.innerText = text;
   para.appendChild(newFeeling);
   if (endingControls.isTrailingAnd.value === "yesTrailingAnd") {
     para.appendChild(newBreak());
     const link = createLinkingWord();
     para.appendChild(link);
   }
-  if (poem.children.length == 0) {
+  if (poem.children.length === 0) {
     poem.appendChild(para);
   }
 
@@ -120,7 +126,7 @@ function createLinkingWord() {
 // handle
 const handleBtn = document.getElementById("handle");
 let isExpanded = true;
-handleBtn.addEventListener("click", (event) => {
+handleBtn.addEventListener("click", () => {
   const toolbox = document.querySelector(".toolbox");
   isExpanded = !isExpanded;
   toolbox.classList.toggle("expanded", isExpanded);
@@ -136,6 +142,7 @@ breakBtn.addEventListener("click", () => {
     b.classList.add("break-active");
   }
 });
+
 function createBreak(event) {
   const b = event.target;
   if (!b.classList.contains("break-active")) return;
@@ -146,7 +153,7 @@ function createBreak(event) {
     els.push(el);
     el = el.nextSibling;
   }
-  const para = document.createElement("p");
+  const para = PARAGRAPH_TEMPLATE.cloneNode(true);
   for (const el of els) {
     para.appendChild(el);
   }
@@ -183,9 +190,9 @@ downloadBtn.addEventListener("click", () => {
 // reverse
 const reverseBtn = document.getElementById("reverse");
 let isLightMode = true;
-reverseBtn.addEventListener("click", (event) => {
-  var themeLink = document.getElementsByTagName("link")[1];
+reverseBtn.addEventListener("click", () => {
   isLightMode = !isLightMode;
+  const themeLink = document.querySelector(".theme-sheet");
   themeLink.href = isLightMode ? "css/light.css" : "css/dark.css";
 });
 

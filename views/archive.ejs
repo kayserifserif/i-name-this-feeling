@@ -4,20 +4,42 @@
 <body>
   <main>
     <%- include('header') %>
-    <div class="archive">
-      <% data.forEach(entry => { %>
-        <div class="entry">
-          <div class="entry-timestamp">
-            <%= entry.created_at %>
+    <div class="text">
+      <div class="archive">
+        <% data.reverse().forEach(entry => { %>
+          <div class="entry">
+            <div class="entry-timestamp">
+              <%= entry.created_at.toLocaleString() %>
+            </div>
+            <div class="entry-author">
+              <% if (entry.author) { %>
+                <%= entry.author %>
+              <% } else { %>
+                Anonymous
+              <% } %>
+            </div>
+            <div class="entry-text poem">
+              <% for (let i = 0; i < entry.text.length; i++) { %>
+                <div class="paragraph">
+                  <% for (let j = 0; j < entry.text[i].length; j++) { %>
+                    <% if (j % 2 === 0) { %>
+                      <div class="feeling">
+                        <%= entry.text[i][j] %>
+                      </div>
+                    <% } else { %>
+                      <div class="linking-word">
+                        <div class="linking-word-display">
+                          <%= entry.text[i][j] %>
+                        </div>
+                      </div>
+                    <% } %>
+                  <% } %>
+                </div>
+              <% } %>
+            </div>
           </div>
-          <div class="entry-author">
-            <%= entry.author %>
-          </div>
-          <div class="entry-text">
-            <%= entry.text %>
-          </div>
-        </div>
-      <% }) %>
+        <% }) %>
+      </div>
     </div>
     <%- include('footer') %>
   </main>

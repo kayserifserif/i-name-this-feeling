@@ -11,6 +11,22 @@ async function getData() {
     .from("poems")
     .select("*");
   console.log(data, error);
+  if (data) {
+    data.forEach(entry => {
+      const createdAt = entry.created_at;
+      if (createdAt) {
+        const date = new Date(createdAt);
+        console.log(date);
+        entry.created_at = date;
+      }
+
+      const text = entry.text;
+      if (text) {
+        const lines = text.split("\n").map(line => line.split(" "));
+        entry.text = lines;
+      }
+    });
+  }
   return { data, error };
 }
 

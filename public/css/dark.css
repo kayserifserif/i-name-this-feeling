@@ -1,7 +1,8 @@
 :root {
   --bg-col: var(--dark);
-  --text-col: var(--light);
-  --mid-col: var(--lessdark);
+  --bg-sec-col: var(--lessdark);
+  --fg-col: var(--light);
+  --fg-sec-col: var(--lesslight);
   --link-col: var(--darklink);
   --link-hover: var(--darklinkhover);
   --link-active: var(--darklinkactive);
