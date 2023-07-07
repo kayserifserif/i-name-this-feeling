@@ -46,18 +46,42 @@ a:hover {
   font-style: italic;
 }
 
+button {
+  appearance: none;
+  background: none;
+  border: none;
+  margin: 0;
+  padding: 0;
+  font-family: "IBM Plex Sans", sans-serif;
+  font-size: 1em;
+  line-height: 1;
+  color: var(--fg-col);
+  cursor: pointer;
+}
+
+button:disabled {
+  pointer-events: none;
+  color: var(--fg-sec-col);
+}
+
 .hidden {
   display: none !important;
 }
 
-/* NAV */
+/* HEADER */
 
 .nav ul {
   margin: 0;
   padding: 0;
   list-style-type: none;
   display: flex;
+  flex-direction: column;
 }
+  @media (min-width: 800px) {
+    .nav ul {
+      flex-direction: row;
+    }
+  }
 
 .nav li {
   display: inline-block;
@@ -70,46 +94,29 @@ a:hover {
 /* POEM */
 
 main {
-  /* padding-bottom: 27vh; */
-  /* padding-bottom: 47vh; */
+  flex: 1;
+  height: 100vh;
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
   @media (min-width: 800px) {
     main {
-      /* padding-bottom: 27vh; */
-      padding: 0;
-      /* flex: 1; */
-      flex: 1;
-      margin: 50px;
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
+      padding: 50px;
     }
   }
 
 .text {
   padding: 2.5rem;
   background-color: var(--bg-sec-col);
-  /* width: max-content; */
-  /* max-width: 100%; */
+  flex: 1;
 }
   @media (min-width: 800px) {
     .text {
-      /* padding: 2rem 5rem 3.5rem; */
       padding: 5rem;
-      flex: 1;
     }
   }
-
-/* .title {
-  font-size: 4vh;
-  line-height: 1;
-  margin: 0;
-}
-  @media (min-width: 800px) {
-    .title {
-      font-size: 6vh;
-    }
-  } */
 
 .title label:not(.hidden),
 .author label:not(.hidden) {
@@ -139,23 +146,6 @@ main {
   margin-top: 50px;
   display: flex;
   gap: 1em;
-}
-
-.review-btn {
-  appearance: none;
-  background: none;
-  border: none;
-  margin: 0;
-  padding: 0;
-  font-size: 1em;
-  font-family: "IBM Plex Sans", sans-serif;
-  color: var(--fg-col);
-  cursor: pointer;
-}
-
-.review-btn:disabled {
-  pointer-events: none;
-  opacity: 0.5;
 }
 
 .review-btn:hover {
@@ -218,10 +208,6 @@ main {
   }
 }
 
-/* .feeling:hover {
-  text-decoration: line-through;
-} */
-
 .break {
   position: relative;
   width: .5em;
@@ -229,9 +215,6 @@ main {
 
 .break-active {
   background-color: var(--link-hover);
-}
-
-.break-active:hover {
   cursor: pointer;
 }
 
@@ -254,102 +237,73 @@ main {
 /* TOOLBOX */
 
 .toolbox {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  padding: 50px 50px 50px 0;
-  width: 100%;
-
-  height: 80px;
+  height: 100vh;
+  overflow: hidden;
+  background-color: var(--bg-col);
 }
-.toolbox.expanded {
-  height: auto;
+
+@media (max-width: 800px) {
+  .toolbox {
+    display: none;
+  }
+
+  .toolbox.expanded {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100vw;
+    z-index: 1;
+  
+    padding: 20px;
+  
+    display: flex;
+    flex-direction: column;
+  }
 }
 @media (min-width: 800px) {
   .toolbox {
-    position: relative;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    width: 50px;
-  }
-  
-  .toolbox.expanded {
     width: 350px;
-    height: 100vh;
+    padding: 50px 50px 50px 0;
   }
 }
 
-#handle {
-  display: block;
-  text-align: center;
-  margin: -1rem auto 1rem;
-  background: none;
-  border: 0;
+#toolbox-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 20px;
+  z-index: 2;
 }
-@media (min-width: 800px) {
-  #handle {
-    position: absolute;
-    left: 0;
-    top: 50%;
-    transform: translate(0, -50%) rotate(-90deg);
+  @media (min-width: 800px) {
+    #toolbox-btn {
+      display: none;
+    }
   }
-}
-
-#handle:hover {
-  cursor: pointer;
-}
 
 .toolbox p {
   font-style: italic;
   color: var(--fg-sec-col);
 }
 
-.toolbox > p {
-  margin-bottom: 0;
-}
-
 .controls {
-  margin-top: 0;
   display: flex;
   flex-direction: column;
   gap: 50px;
+  height: 100%;
 }
-  @media (min-width: 800px) {
-    .controls {
-      width: 100%;
-      /* flex-direction: row; */
-      flex: 1;
-      overflow: hidden;
-    }
-  }
-
-.controls-section {
-  width: 100%;
-}
-  @media (min-width: 800px) {
-    .controls-section {
-      /* width: 33.3%; */
-    }
-  }
 
 #choose {
   flex: 1;
-  /* display: flex; */
-  /* flex-direction: column; */
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
 #choose-controls {
-  overflow: scroll;
-  height: 75px;
-}
-@media (min-width: 800px) {
-  #choose-controls {
-    /* flex: 1; */
-    height: 100%;
-  }
+  overflow-y: auto;
+  flex: 1;
 }
 
 .word {
@@ -371,7 +325,6 @@ main {
   cursor: pointer;
   font-style: italic;
   font-size: 1.6em;
-  line-height: 1;
   margin-right: 1.1em;
 }
 
@@ -382,24 +335,10 @@ main {
 }
 
 #strats-controls button {
-  appearance: none;
-  background: none;
-  border: none;
-  font-size: 1em;
-  font-family: "IBM Plex Sans", sans-serif;
-  cursor: pointer;
   text-align: left;
-  color: var(--fg-col);
-  margin: 0;
-  padding: 0;
   display: flex;
   gap: 0.5em;
   align-items: center;
-}
-
-#strats-controls button:disabled {
-  color: var(--fg-sec-col);
-  cursor: default;
 }
 
 #strats-controls button:hover {
@@ -436,16 +375,7 @@ main {
 }
 
 .linking-word button {
-  appearance: none;
-  background: none;
-  border: none;
-  margin: 0;
-  padding: 0;
-  font-size: 1em;
-  font-family: "IBM Plex Sans", sans-serif;
-  cursor: pointer;
   text-align: left;
-  line-height: 1;
 }
 
 .linking-word-display {
@@ -473,11 +403,10 @@ main {
 .archive {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 20px;
+  gap: 50px 20px;
 }
 
 .entry {
-  /* opacity: 0.5; */
   color: var(--fg-sec-col);
 }
 
@@ -489,17 +418,17 @@ main {
 .entry .poem {
   font-size: 1em;
   color: var(--fg-col);
-  height: 200px;
-  overflow-y: auto;
+}
+@media (min-width: 800px) {
+  .entry .poem {
+    height: 200px;
+    overflow-y: auto;
+  }
 }
 
 /* FOOTER */
 
 .footer {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  gap: 0.5em;
   color: var(--fg-sec-col);
 }
 
@@ -508,6 +437,7 @@ main {
 }
 
 .logo {
+  display: inline-block;
   height: 1em;
-  margin-bottom: -0.1em;
+  margin: 0 0.1em -0.2em 0.1em;
 }

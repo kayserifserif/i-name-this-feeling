@@ -54,11 +54,16 @@ function shuffle(array) {
 }
 
 function toggleToolbox() {
-  const toolbox = document.querySelector(".toolbox");
   isExpanded = !isExpanded;
+
+  const btn = document.querySelector("#toolbox-btn");
+  const show = btn.querySelector("#show-toolbox-btn");
+  const hide = btn.querySelector("#hide-toolbox-btn");
+  show.classList.toggle("hidden", isExpanded);
+  hide.classList.toggle("hidden", !isExpanded);
+
+  const toolbox = document.querySelector(".toolbox");
   toolbox.classList.toggle("expanded", isExpanded);
-  const handleImg = handleBtn.querySelector("img");
-  handleImg.src = isExpanded ? "/img/down-arrow.svg" : "/img/up-arrow.svg";
 }
 
 function addNewFeeling(text) {
@@ -317,10 +322,10 @@ authorForm.addEventListener("submit", e => {
   authorInput.blur();
 });
 
-// handle
-const handleBtn = document.querySelector("#handle");
-let isExpanded = true;
-handleBtn.addEventListener("click", toggleToolbox);
+// toolbox
+const toolboxBtn = document.querySelector("#toolbox-btn");
+let isExpanded = document.querySelector(".toolbox").classList.contains("expanded");
+toolboxBtn.addEventListener("click", toggleToolbox);
 
 // trailing and
 const endingControls = document.querySelector("#ending-controls");

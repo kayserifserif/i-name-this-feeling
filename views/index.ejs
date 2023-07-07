@@ -42,8 +42,11 @@
     </div>
     <%- include('footer') %>
   </main>
-  <div class="toolbox expanded">
-    <button id="handle" type="button"><img src="/img/down-arrow.svg" width="10" height="10" role="presentation" alt=""></button>
+  <button id="toolbox-btn" type="button">
+    <span class="fa-solid fa-bars" id="show-toolbox-btn" title="Show toolbox"></span>
+    <span class="fa-solid fa-xmark hidden" id="hide-toolbox-btn" title="Hide toolbox"></span>
+  </button>
+  <div class="toolbox">
     <div class="controls">
       <div id="choose" class="controls-section">
         <p>Record as many emotions as you feel:</p>
