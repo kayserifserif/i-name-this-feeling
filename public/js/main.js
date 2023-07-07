@@ -58,17 +58,12 @@ function shuffle(array) {
   }
 }
 
-function newBreak() {
-  const newBreak = BREAK_TEMPLATE.cloneNode(true);
-  newBreak.addEventListener("click", createBreak);
-  return newBreak;
-}
-
-function scrollToBottom() {
-  window.scrollTo({
-    top: document.body.scrollHeight,
-    behavior: "smooth"
-  });
+function toggleToolbox() {
+  const toolbox = document.querySelector(".toolbox");
+  isExpanded = !isExpanded;
+  toolbox.classList.toggle("expanded", isExpanded);
+  const handleImg = handleBtn.querySelector("img");
+  handleImg.src = isExpanded ? "/img/down-arrow.svg" : "/img/up-arrow.svg";
 }
 
 function addNewFeeling(text) {
@@ -77,7 +72,7 @@ function addNewFeeling(text) {
     para = PARAGRAPH_TEMPLATE.cloneNode(true);
   } else {
     para = poem.lastChild;
-    if (endingControls.isTrailingAnd.value === "noTrailingAnd") {
+    if (endingControls.hasTrailingLink.value === "false") {
       para.appendChild(newBreak());
       const link = createLinkingWord();
       para.appendChild(link);
@@ -88,7 +83,7 @@ function addNewFeeling(text) {
   const newFeeling = FEELING_TEMPLATE.cloneNode(true);
   newFeeling.innerText = text;
   para.appendChild(newFeeling);
-  if (endingControls.isTrailingAnd.value === "yesTrailingAnd") {
+  if (endingControls.hasTrailingLink.value === "true") {
     para.appendChild(newBreak());
     const link = createLinkingWord();
     para.appendChild(link);
@@ -98,6 +93,39 @@ function addNewFeeling(text) {
   }
 
   scrollToBottom();
+}
+
+function newBreak() {
+  const newBreak = BREAK_TEMPLATE.cloneNode(true);
+  newBreak.addEventListener("click", createBreak);
+  return newBreak;
+}
+
+function changeTrailingLink(event) {
+  if (poem.children.length > 0) {
+    const val = event.target.value;
+    const para = poem.lastChild;
+    if (val === "true") {
+      para.appendChild(newBreak());
+      const link = createLinkingWord();
+      para.appendChild(link);
+    } else {
+      const b = para.querySelector(".break:last-of-type");
+      b.nextSibling.remove(); // remove break
+      b.remove(); // remove and
+    }
+  }
+}
+
+function scrollToBottom() {
+  window.scrollTo({
+    top: document.body.scrollHeight,
+    behavior: "smooth"
+  });
+}
+
+function clearPoem() {
+  poem.innerHTML = "";
 }
 
 function createLinkingWord() {
@@ -123,25 +151,12 @@ function createLinkingWord() {
   return link;
 }
 
-// handle
-const handleBtn = document.getElementById("handle");
-let isExpanded = true;
-handleBtn.addEventListener("click", () => {
-  const toolbox = document.querySelector(".toolbox");
-  isExpanded = !isExpanded;
-  toolbox.classList.toggle("expanded", isExpanded);
-  const handleImg = handleBtn.querySelector("img");
-  handleImg.src = isExpanded ? "/img/down-arrow.svg" : "/img/up-arrow.svg";
-});
-
-// break
-const breakBtn = document.getElementById("insertBreak");
-breakBtn.addEventListener("click", () => {
+function activateBreaks() {
   const breaks = document.querySelectorAll(".break");
   for (const b of breaks) {
     b.classList.add("break-active");
   }
-});
+}
 
 function createBreak(event) {
   const b = event.target;
@@ -165,15 +180,21 @@ function createBreak(event) {
   }
 }
 
-// clear
-const clearBtn = document.getElementById("clear");
-clearBtn.addEventListener("click", () => {
-  poem.innerHTML = "";
-});
+function toggleTheme() {
+  isLightMode = !isLightMode;
+  const themeLink = document.querySelector(".theme-sheet");
+  themeLink.href = isLightMode ? "css/light.css" : "css/dark.css";
+}
 
-// download
-const downloadBtn = document.getElementById("download");
-downloadBtn.addEventListener("click", () => {
+function changeSize(bigger) {
+  const titleOrig = parseInt(getComputedStyle(title).fontSize);
+  const poemOrig = parseInt(getComputedStyle(poem).fontSize);
+  const mult = bigger ? 1.1 : 0.9;
+  title.style.fontSize = (titleOrig * mult) + "px";
+  poem.style.fontSize = (poemOrig * mult) + "px";
+}
+
+function download() {
   html2canvas(text, {
     logging: false
   }).then(canvas => {
@@ -185,53 +206,9 @@ downloadBtn.addEventListener("click", () => {
     anchor.download = "poem.png";
     anchor.click();
   });
-});
-
-// reverse
-const reverseBtn = document.getElementById("reverse");
-let isLightMode = true;
-reverseBtn.addEventListener("click", () => {
-  isLightMode = !isLightMode;
-  const themeLink = document.querySelector(".theme-sheet");
-  themeLink.href = isLightMode ? "css/light.css" : "css/dark.css";
-});
-
-// font size control
-const sizeControls = document.getElementsByClassName("sizeControl");
-const title = document.querySelector(".title");
-for (const sizeControl of sizeControls) {
-  sizeControl.addEventListener("click", (event) => {
-    const titleOrig = parseInt(getComputedStyle(title).fontSize);
-    const poemOrig = parseInt(getComputedStyle(poem).fontSize);
-    const mult = (sizeControl.id === "bigger") ? 1.1 : 0.9;
-    title.style.fontSize = (titleOrig * mult) + "px";
-    poem.style.fontSize = (poemOrig * mult) + "px";
-  });
 }
 
-// trailing and
-endingControls.addEventListener("change", (event) => {
-  if (poem.children.length > 0) {
-    const val = event.target.value;
-    const para = poem.lastChild;
-    if (val === "yesTrailingAnd") {
-      para.appendChild(newBreak());
-      const link = createLinkingWord();
-      para.appendChild(link);
-    } else {
-      const b = para.querySelector(".break:last-of-type");
-      b.nextSibling.remove(); // remove break
-      b.remove(); // remove and
-    }
-  }
-})
-
-// window resize
-window.addEventListener("resize", () => {
-  scrollToBottom();
-});
-
-window.addEventListener("click", e => {
+function cancelInteractions(e) {
   const target = e.target;
   if (!target.closest(".linking-word")) {
     const expanded = document.querySelector(".linking-word.expanded");
@@ -239,4 +216,45 @@ window.addEventListener("click", e => {
       expanded.classList.remove("expanded");
     }
   }
-});
+}
+
+// handle
+const handleBtn = document.getElementById("handle");
+let isExpanded = true;
+handleBtn.addEventListener("click", toggleToolbox);
+
+// trailing and
+endingControls.addEventListener("change", changeTrailingLink);
+
+// break
+const breakBtn = document.getElementById("insertBreak");
+breakBtn.addEventListener("click", activateBreaks);
+
+// clear
+const clearBtn = document.getElementById("clear");
+clearBtn.addEventListener("click", clearPoem);
+
+// reverse
+const reverseBtn = document.getElementById("reverse");
+let isLightMode = true;
+reverseBtn.addEventListener("click", toggleTheme);
+
+// font size control
+const sizeControls = document.getElementsByClassName("sizeControl");
+const title = document.querySelector(".title");
+for (const sizeControl of sizeControls) {
+  sizeControl.addEventListener("click", () => {
+    const bigger = sizeControl.id === "bigger";
+    changeSize(bigger);
+  });
+}
+
+// download
+const downloadBtn = document.getElementById("download");
+downloadBtn.addEventListener("click", download);
+
+// window resize
+window.addEventListener("resize", scrollToBottom);
+
+// cancel interactions
+window.addEventListener("click", cancelInteractions);

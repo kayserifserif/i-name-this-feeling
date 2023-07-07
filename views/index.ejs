@@ -38,21 +38,39 @@
       <div id="ending" class="controls-section">
         <p>Emotions are currently:</p>
         <form id="ending-controls">
-          <input type="radio" name="isTrailingAnd" id="yesTrailingAnd" value="yesTrailingAnd" checked autocomplete="off">
-          <label for="yesTrailingAnd">Unresolved</label>
-          <input type="radio" name="isTrailingAnd" id="noTrailingAnd" value="noTrailingAnd" autocomplete="off">
-          <label for="noTrailingAnd">At capacity</label>
+          <input type="radio" name="hasTrailingLink" id="yesTrailingLink" value="true" checked autocomplete="off">
+          <label for="yesTrailingLink">Unresolved</label>
+          <input type="radio" name="hasTrailingLink" id="noTrailingLink" value="false" autocomplete="off">
+          <label for="noTrailingLink">At capacity</label>
         </form>
       </div>
       <div id="strats" class="controls-section">
         <p>Emotional coping strategies:</p>
         <div id="strats-controls">
-          <button id="insertBreak" type="button"><span class="fas fa-paragraph"></span> Take a break</button>
-          <button id="clear" type="button"><span class="fas fa-trash-alt"></span> Clear your head</button>
-          <button id="reverse" type="button"><span class="fas fa-adjust"></span> Find a change of scenery</button>
-          <button id="bigger" class="sizeControl" type="button"><span class="fas fa-plus"></span> Grapple with things up close</button>
-          <button id="smaller" class="sizeControl" type="button"><span class="fas fa-minus"></span> See the bigger picture</button>
-          <button id="download" type="button"><span class="fas fa-file-export"></span> Take things offline</button>
+          <button id="insertBreak" type="button">
+            <span class="fas fa-paragraph" aria-hidden="true"></span>
+            Take a break
+          </button>
+          <button id="clear" type="button">
+            <span class="fas fa-trash-alt" aria-hidden="true"></span>
+            Clear your head
+          </button>
+          <button id="reverse" type="button">
+            <span class="fas fa-adjust" aria-hidden="true"></span>
+            Find a change
+             of scenery</button>
+          <button id="bigger" class="sizeControl" type="button">
+            <span class="fas fa-plus" aria-hidden="true"></span>
+            Grapple with things
+             up close</button>
+          <button id="smaller" class="sizeControl" type="button">
+            <span class="fas fa-minus" aria-hidden="true"></span>
+            See the bigger
+             picture</button>
+          <button id="download" type="button">
+            <span class="fas fa-file-export" aria-hidden="true"></span>
+            Take things offline
+          </button>
         </div>
       </div>
     </div>
