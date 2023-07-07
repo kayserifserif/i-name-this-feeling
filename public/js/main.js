@@ -228,9 +228,29 @@ function submit() {
       text: text
     })
   });
-  
-  request.then(res => res.text())
-    .then(text => console.log(text));
+
+  const submitBtn = document.querySelector("#submit");
+  submitBtn.setAttribute("disabled", "");
+
+  const submitLabel = submitBtn.querySelector(".control-label");
+  const originalText = submitLabel.innerText;
+  submitLabel.innerText = "Submitting…";
+
+  const TIMEOUT = 1000;
+
+  request.then(res => res.json())
+    .then(res => {
+      if (!res.error) {
+        submitLabel.innerText = "Submitted!";
+      } else {
+        submitLabel.innerText = "Something went wrong.";
+      }
+
+      setTimeout(() => {
+        submitLabel.innerText = originalText;
+        submitBtn.removeAttribute("disabled");
+      }, TIMEOUT);
+    });
 }
 
 function cancelInteractions(e) {

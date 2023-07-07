@@ -6,18 +6,23 @@ const supabaseUrl = 'https://nkzqjyyupuffvgqcrcxy.supabase.co';
 const supabaseKey = process.env.SUPABASE_KEY;
 const supabase = createClient(supabaseUrl, supabaseKey);
 
+const formatter = new Intl.DateTimeFormat("en-US", {
+  dateStyle: "medium",
+  timeStyle: "short"
+});
+
 async function getData() {
-  let { data, error } = await supabase
+  const { data, error } = await supabase
     .from("poems")
     .select("*");
-  console.log(data, error);
+  
   if (data) {
     data.forEach(entry => {
       const createdAt = entry.created_at;
       if (createdAt) {
         const date = new Date(createdAt);
-        console.log(date);
-        entry.created_at = date;
+        const dateStr = formatter.format(date);
+        entry.created_at = dateStr;
       }
 
       const text = entry.text;
@@ -27,6 +32,7 @@ async function getData() {
       }
     });
   }
+
   return { data, error };
 }
 
@@ -35,7 +41,7 @@ async function submitData(body) {
     .from("poems")
     .insert([body])
     .select();
-  console.log(data, error);
+  
   return { data, error };
 }
 

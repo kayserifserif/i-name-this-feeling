@@ -322,6 +322,11 @@ main {
   align-items: center;
 }
 
+#strats-controls button:disabled {
+  color: var(--fg-sec-col);
+  cursor: default;
+}
+
 #strats-controls button:hover {
   font-style: italic;
 }
