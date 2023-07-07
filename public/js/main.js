@@ -2,20 +2,15 @@ const NUM_INIT_WORDS = 3;
 
 const text = document.querySelector(".text");
 const poem = document.querySelector(".poem");
-const endingControls = document.querySelector("#ending-controls");
 
 const WORD_TEMPLATE = document.querySelector(".word");
 WORD_TEMPLATE.remove();
-
 const PARAGRAPH_TEMPLATE = document.querySelector(".paragraph");
 PARAGRAPH_TEMPLATE.remove();
-
 const FEELING_TEMPLATE = document.querySelector(".feeling");
 FEELING_TEMPLATE.remove();
-
 const BREAK_TEMPLATE = document.querySelector(".break");
 BREAK_TEMPLATE.remove();
-
 const LINKING_TEMPLATE = document.querySelector(".linking-word");
 LINKING_TEMPLATE.remove();
 
@@ -269,37 +264,38 @@ let isExpanded = true;
 handleBtn.addEventListener("click", toggleToolbox);
 
 // trailing and
+const endingControls = document.querySelector("#ending-controls");
 endingControls.addEventListener("change", changeTrailingLink);
 
 // break
-const breakBtn = document.querySelector("#insertBreak");
+const breakBtn = document.querySelector("#break-btn");
 breakBtn.addEventListener("click", activateBreaks);
 
 // clear
-const clearBtn = document.querySelector("#clear");
+const clearBtn = document.querySelector("#clear-btn");
 clearBtn.addEventListener("click", clearPoem);
 
 // reverse
-const reverseBtn = document.querySelector("#reverse");
+const reverseBtn = document.querySelector("#reverse-btn");
 let isLightMode = true;
 reverseBtn.addEventListener("click", toggleTheme);
 
 // font size control
-const sizeControls = document.querySelectorAll(".sizeControl");
+const sizeControls = document.querySelectorAll(".size-control");
 const title = document.querySelector(".title");
 for (const sizeControl of sizeControls) {
   sizeControl.addEventListener("click", () => {
-    const bigger = sizeControl.id === "bigger";
+    const bigger = sizeControl.id === "bigger-btn";
     changeSize(bigger);
   });
 }
 
 // download
-const downloadBtn = document.querySelector("#download");
+const downloadBtn = document.querySelector("#download-btn");
 downloadBtn.addEventListener("click", download);
 
 // submit
-const submitBtn = document.querySelector("#submit");
+const submitBtn = document.querySelector("#submit-btn");
 submitBtn.addEventListener("click", submit)
 
 // window resize
