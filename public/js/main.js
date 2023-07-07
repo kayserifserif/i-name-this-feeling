@@ -14,6 +14,8 @@ BREAK_TEMPLATE.remove();
 const LINKING_TEMPLATE = document.querySelector(".linking-word");
 LINKING_TEMPLATE.remove();
 
+const BREAKPOINT = 1000;
+
 const WORDS_CONTAINER = document.querySelector("#choose-controls");
 fetch("/assets/words.txt")
   .then(r => r.text())
@@ -298,6 +300,19 @@ function submit() {
     });
 }
 
+function handleResize() {
+  const width = document.body.scrollWidth;
+  if (width < BREAKPOINT) {
+    isExpanded = true;
+    toggleToolbox();
+  } else if (width >= BREAKPOINT) {
+    isExpanded = false;
+    toggleToolbox();
+  }
+  
+  scrollToBottom();
+}
+
 function cancelInteractions(e) {
   const target = e.target;
   if (!target.closest(".linking-word")) {
@@ -367,7 +382,7 @@ cancelBtn.addEventListener("click", cancelSubmission);
 submitBtn.addEventListener("click", submit);
 
 // window resize
-window.addEventListener("resize", scrollToBottom);
+window.addEventListener("resize", handleResize);
 
 // cancel interactions
 window.addEventListener("click", cancelInteractions);
