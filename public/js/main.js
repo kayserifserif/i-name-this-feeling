@@ -2,7 +2,7 @@ const NUM_INIT_WORDS = 3;
 
 const text = document.querySelector(".text");
 const poem = document.querySelector(".poem");
-const endingControls = document.getElementById("ending-controls");
+const endingControls = document.querySelector("#ending-controls");
 
 const WORD_TEMPLATE = document.querySelector(".word");
 WORD_TEMPLATE.remove();
@@ -208,6 +208,31 @@ function download() {
   });
 }
 
+function submit() {
+  const paras = Array.from(document.querySelectorAll(".poem .paragraph"));
+  const lines = paras.map(para => {
+    const els = Array.from(para.querySelectorAll(".feeling, .linking-word-display"));
+    const words = els.map(word => word.innerText);
+    const line = words.join(" ");
+    return line;
+  });
+  const text = lines.join("\n");
+  console.log(text);
+  
+  const request = fetch("/submit", {
+    method: "POST",
+    headers: {
+      "content-type": "application/json"
+    },
+    body: JSON.stringify({
+      text: text
+    })
+  });
+  
+  request.then(res => res.text())
+    .then(text => console.log(text));
+}
+
 function cancelInteractions(e) {
   const target = e.target;
   if (!target.closest(".linking-word")) {
@@ -219,7 +244,7 @@ function cancelInteractions(e) {
 }
 
 // handle
-const handleBtn = document.getElementById("handle");
+const handleBtn = document.querySelector("#handle");
 let isExpanded = true;
 handleBtn.addEventListener("click", toggleToolbox);
 
@@ -227,20 +252,20 @@ handleBtn.addEventListener("click", toggleToolbox);
 endingControls.addEventListener("change", changeTrailingLink);
 
 // break
-const breakBtn = document.getElementById("insertBreak");
+const breakBtn = document.querySelector("#insertBreak");
 breakBtn.addEventListener("click", activateBreaks);
 
 // clear
-const clearBtn = document.getElementById("clear");
+const clearBtn = document.querySelector("#clear");
 clearBtn.addEventListener("click", clearPoem);
 
 // reverse
-const reverseBtn = document.getElementById("reverse");
+const reverseBtn = document.querySelector("#reverse");
 let isLightMode = true;
 reverseBtn.addEventListener("click", toggleTheme);
 
 // font size control
-const sizeControls = document.getElementsByClassName("sizeControl");
+const sizeControls = document.querySelectorAll(".sizeControl");
 const title = document.querySelector(".title");
 for (const sizeControl of sizeControls) {
   sizeControl.addEventListener("click", () => {
@@ -250,8 +275,12 @@ for (const sizeControl of sizeControls) {
 }
 
 // download
-const downloadBtn = document.getElementById("download");
+const downloadBtn = document.querySelector("#download");
 downloadBtn.addEventListener("click", download);
+
+// submit
+const submitBtn = document.querySelector("#submit");
+submitBtn.addEventListener("click", submit)
 
 // window resize
 window.addEventListener("resize", scrollToBottom);
