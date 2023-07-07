@@ -1,27 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>what i feel is</title>
-  <meta name="description" content="One-syllable emotions, felt in waves turbulent, uneven, overlapping, and without end.">
-  <meta property="og:title" content="what i feel is">
-  <meta property="og:description" content="One-syllable emotions, felt in waves turbulent, uneven, overlapping, and without end.">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/css/styles.css">
-  <link rel="stylesheet" href="/css/light.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@xz/fonts@1/serve/ibm-plex-serif.min.css"> 
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@xz/fonts@1/serve/ibm-plex-sans.min.css"> 
-  <link rel="icon" href="/favicon.svg">
-  <script src="https://kit.fontawesome.com/50b1346d06.js" crossorigin="anonymous"></script>
-</head>
+<%- include('head') %>
 <body>
-  <!-- <nav>
-    <ul id="nav">
-      <li><a href="#collective">Our emotions</a></li>
-      <li><a href="#personal">My emotions</a></li>
-    </ul>
-  </nav> -->
   <main>
+    <%- include('header') %>
     <div class="text">
       <h1 class="title">what i feel is</h1>
       <div class="poem">
@@ -39,10 +21,7 @@
         </div>
       </div>
     </div>
-    <div class="about">
-      <a href="https://kayserifserif.place"><img src="/img/logo.svg" alt="Logo" class="logo"></a>
-      <p>One-syllable emotions, felt in waves turbulent, uneven, overlapping, and without end.</p>
-    </div>
+    <%- include('footer') %>
   </main>
   <div class="toolbox expanded">
     <button id="handle" type="button"><img src="/img/down-arrow.svg" width="10" height="10" role="presentation" alt=""></button>

@@ -1,5 +1,18 @@
 # what i feel is
 
+[20230707 rewriting]
+
+## Development
+
+This is a Node.js/Express app using EJS as the templating engine. It also interfaces with a Supabase database — to get that running, make a copy of `.env.example`, rename it `.env`, and add the API key from the Supabase project key.
+
+```
+npm install
+DEBUG=what-i-feel-is:* npm start
+```
+
+[20220824]
+
 One-syllable emotions, felt in waves turbulent, uneven, overlapping, and without end.
 
 !["These emotions of…" followed by repetitions of "rage and rage and rage".](documentation/Screen%20Shot%202020-07-08%20at%2021.57.05.png)

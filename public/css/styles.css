@@ -39,7 +39,13 @@ body {
 }
 
 a {
-  color: var(--link-col);
+  /* color: var(--link-col); */
+  color: var(--text-col);
+  opacity: 0.8;
+}
+
+a:hover {
+  font-style: italic;
 }
 
 .hidden {
@@ -48,24 +54,26 @@ a {
 
 /* NAV */
 
-/* #nav {
+.nav ul {
+  margin: 0;
   padding: 0;
   list-style-type: none;
+  display: flex;
 }
 
-#nav li {
+.nav li {
   display: inline-block;
 }
 
-#nav li:not(:last-of-type) {
+.nav li:not(:last-of-type) {
   margin-right: 1em;
-} */
+}
 
 /* POEM */
 
 main {
   /* padding-bottom: 27vh; */
-  padding-bottom: 47vh;
+  /* padding-bottom: 47vh; */
 }
   @media (min-width: 800px) {
     main {

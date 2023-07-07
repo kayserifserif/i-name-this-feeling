@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('head') %>
+<body>
+  <main>
+    <%- include('header') %>
+    <div class="archive">
+      <% data.forEach(entry => { %>
+        <div class="entry">
+          <div class="entry-timestamp">
+            <%= entry.created_at %>
+          </div>
+          <div class="entry-author">
+            <%= entry.author %>
+          </div>
+          <div class="entry-text">
+            <%= entry.text %>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+    <%- include('footer') %>
+  </main>
+</body>
+</html>

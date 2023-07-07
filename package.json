@@ -2,16 +2,16 @@
   "name": "what-i-feel-is",
   "private": true,
   "version": "0.0.0",
-  "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
-  },
-  "devDependencies": {
-    "vite": "^4.4.0"
+    "start": "node ./bin/www"
   },
   "dependencies": {
-    "@supabase/supabase-js": "^2.26.0"
+    "@supabase/supabase-js": "^2.26.0",
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "dotenv": "^16.3.1",
+    "ejs": "^3.1.9",
+    "express": "~4.16.1",
+    "morgan": "~1.9.1"
   }
 }
