@@ -26,7 +26,7 @@ body {
 
 body {
   font-family: "IBM Plex Sans", sans-serif;
-  background-color: var(--bg-sec-col);
+  background-color: var(--bg-col);
   color: var(--fg-col);
   display: flex;
   flex-direction: column;
@@ -47,7 +47,7 @@ a:hover {
 }
 
 .hidden {
-  display: none;
+  display: none !important;
 }
 
 /* NAV */
@@ -82,15 +82,13 @@ main {
       margin: 50px;
       display: flex;
       flex-direction: column;
-      /* background-color: var(--light); */
       gap: 20px;
     }
   }
 
 .text {
   padding: 2.5rem;
-  /* background-color: var(--bg-col); */
-  background-color: var(--bg-col);
+  background-color: var(--bg-sec-col);
   /* width: max-content; */
   /* max-width: 100%; */
 }
@@ -102,7 +100,7 @@ main {
     }
   }
 
-.title {
+/* .title {
   font-size: 4vh;
   line-height: 1;
   margin: 0;
@@ -111,7 +109,58 @@ main {
     .title {
       font-size: 6vh;
     }
-  }
+  } */
+
+.title label:not(.hidden),
+.author label:not(.hidden) {
+  display: block;
+  color: var(--fg-sec-col);
+}
+
+#title-input,
+#author-input {
+  appearance: none;
+  margin: 0;
+  padding: 0;
+  font-family: "IBM Plex Sans", sans-serif;
+  background-color: var(--bg-col);
+  color: var(--fg-sec-col);
+  border: 1px solid var(--bg-sec-col);
+  font-size: 4vh;
+  line-height: 1;
+}
+
+#title-input:disabled,
+#author-input:disabled {
+  background: none;
+}
+
+.review-btns {
+  margin-top: 50px;
+  display: flex;
+  gap: 1em;
+}
+
+.review-btn {
+  appearance: none;
+  background: none;
+  border: none;
+  margin: 0;
+  padding: 0;
+  font-size: 1em;
+  font-family: "IBM Plex Sans", sans-serif;
+  color: var(--fg-col);
+  cursor: pointer;
+}
+
+.review-btn:disabled {
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+.review-btn:hover {
+  font-style: italic;
+}
 
 .poem {
   font-size: 5.5vh;
@@ -393,6 +442,11 @@ main {
 .entry {
   /* opacity: 0.5; */
   color: var(--fg-sec-col);
+}
+
+.entry-title,
+.entry-author {
+  color: var(--fg-col);
 }
 
 .entry .poem {

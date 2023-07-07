@@ -5,7 +5,13 @@
   <main>
     <%- include('header') %>
     <div class="text">
-      <h1 class="title">what i feel is</h1>
+      <!-- <h1 class="title">what i feel is</h1> -->
+      <div class="title">
+        <label for="title-input" class="hidden">Title / What is this poem about?</label>
+        <form class="title-form">
+          <input type="text" class="title-input" id="title-input" name="title-input" value="what i feel is" disabled autocomplete="off">
+        </form>
+      </div>
       <div class="poem">
         <div class="paragraph"></div>
         <div class="feeling"></div>
@@ -22,6 +28,16 @@
             <button type="button" class="option">despite</button>
           </div>
         </div>
+      </div>
+      <div class="author hidden">
+        <label for="author-input">Your name, if you want</label>
+        <form class="author-form">
+          <input type="text" class="author-input" id="author-input" name="author-input" value="">
+        </form>
+      </div>
+      <div class="review-btns hidden">
+        <button type="button" class="review-btn" id="cancel-btn">Cancel</button>
+        <button type="button" class="review-btn" id="submit-btn">Submit</button>
       </div>
     </div>
     <%- include('footer') %>
@@ -55,7 +71,7 @@
             <span class="fa-solid fa-trash-alt" aria-hidden="true"></span>
             <span class="control-label">Clear your head</span>
           </button>
-          <button id="reverse-btn" type="button">
+          <button id="theme-btn" type="button">
             <span class="fa-solid fa-adjust" aria-hidden="true"></span>
             <span class="control-label">Find a change of scenery</span>
           </button>
@@ -71,7 +87,7 @@
             <span class="fa-solid fa-file-export" aria-hidden="true"></span>
             <span class="control-label">Take things offline</span>
           </button>
-          <button id="submit-btn" type="button">
+          <button id="review-btn" type="button">
             <span class="fa-solid fa-cloud-arrow-up" aria-hidden="true"></span>
             <span class="control-label">Share your feelings with others</span>
           </button>

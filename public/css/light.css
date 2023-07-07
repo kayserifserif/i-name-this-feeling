@@ -1,6 +1,6 @@
 :root {
-  --bg-col: var(--light);
-  --bg-sec-col: var(--lesslight);
+  --bg-col: var(--lesslight);
+  --bg-sec-col: var(--light);
   --fg-col: var(--dark);
   --fg-sec-col: var(--lessdark);
   --link-col: var(--lightlink);

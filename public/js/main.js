@@ -203,6 +203,26 @@ function download() {
   });
 }
 
+function reviewSubmission() {
+  document.querySelector(".title label").classList.remove("hidden");
+  document.querySelector(".author").classList.remove("hidden");
+  document.querySelectorAll("#title-input, #author-input").forEach(input => input.disabled = false);
+
+  document.querySelector(".review-btns").classList.remove("hidden");
+
+  document.querySelector(".toolbox").classList.add("hidden");
+}
+
+function cancelSubmission() {
+  document.querySelector(".title label").classList.add("hidden");
+  document.querySelector(".author").classList.add("hidden");
+  document.querySelectorAll("#title-input, #author-input").forEach(input => input.disabled = true);
+
+  document.querySelector(".review-btns").classList.add("hidden");
+
+  document.querySelector(".toolbox").classList.remove("hidden");
+}
+
 function submit() {
   const paras = Array.from(document.querySelectorAll(".poem .paragraph"));
   const lines = paras.map(para => {
@@ -212,38 +232,42 @@ function submit() {
     return line;
   });
   const text = lines.join("\n");
-  console.log(text);
+
+  const title = document.querySelector("#title-input").value;
+  const author = document.querySelector("#author-input").value;
+
+  const body = { title, author, text };
+  console.log(body);
   
   const request = fetch("/submit", {
     method: "POST",
-    headers: {
-      "content-type": "application/json"
-    },
-    body: JSON.stringify({
-      text: text
-    })
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify(body)
   });
 
-  const submitBtn = document.querySelector("#submit-btn");
-  submitBtn.setAttribute("disabled", "");
+  const cancelBtn = document.querySelector("#cancel-btn");
+  cancelBtn.disabled = true;
 
-  const submitLabel = submitBtn.querySelector(".control-label");
-  const originalText = submitLabel.innerText;
-  submitLabel.innerText = "Submitting…";
+  const submitBtn = document.querySelector("#submit-btn");
+  submitBtn.disabled = true;
+
+  const originalText = submitBtn.innerText;
+  submitBtn.innerText = "Submitting…";
 
   const TIMEOUT = 1000;
 
   request.then(res => res.json())
     .then(res => {
       if (!res.error) {
-        submitLabel.innerText = "Submitted!";
+        submitBtn.innerText = "Submitted!";
       } else {
-        submitLabel.innerText = "Something went wrong.";
+        submitBtn.innerText = "Something went wrong.";
       }
 
       setTimeout(() => {
-        submitLabel.innerText = originalText;
-        submitBtn.removeAttribute("disabled");
+        submitBtn.innerText = originalText;
+        submitBtn.disabled = false;
+        cancelSubmission();
       }, TIMEOUT);
     });
 }
@@ -257,6 +281,20 @@ function cancelInteractions(e) {
     }
   }
 }
+
+const titleForm = document.querySelector(".title-form");
+const titleInput = document.querySelector(".title-input");
+titleForm.addEventListener("submit", e => {
+  e.preventDefault();
+  titleInput.blur();
+});
+
+const authorForm = document.querySelector(".author-form");
+const authorInput = document.querySelector(".author-input");
+authorForm.addEventListener("submit", e => {
+  e.preventDefault();
+  authorInput.blur();
+});
 
 // handle
 const handleBtn = document.querySelector("#handle");
@@ -275,10 +313,10 @@ breakBtn.addEventListener("click", activateBreaks);
 const clearBtn = document.querySelector("#clear-btn");
 clearBtn.addEventListener("click", clearPoem);
 
-// reverse
-const reverseBtn = document.querySelector("#reverse-btn");
+// theme
+const themeBtn = document.querySelector("#theme-btn");
 let isLightMode = true;
-reverseBtn.addEventListener("click", toggleTheme);
+themeBtn.addEventListener("click", toggleTheme);
 
 // font size control
 const sizeControls = document.querySelectorAll(".size-control");
@@ -295,8 +333,12 @@ const downloadBtn = document.querySelector("#download-btn");
 downloadBtn.addEventListener("click", download);
 
 // submit
+const reviewBtn = document.querySelector("#review-btn");
+const cancelBtn = document.querySelector("#cancel-btn");
 const submitBtn = document.querySelector("#submit-btn");
-submitBtn.addEventListener("click", submit)
+reviewBtn.addEventListener("click", reviewSubmission);
+cancelBtn.addEventListener("click", cancelSubmission);
+submitBtn.addEventListener("click", submit);
 
 // window resize
 window.addEventListener("resize", scrollToBottom);
