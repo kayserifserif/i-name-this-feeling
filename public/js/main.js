@@ -55,8 +55,21 @@ function shuffle(array) {
   }
 }
 
-function toggleToolbox() {
-  isExpanded = !isExpanded;
+function isToolboxExpanded() {
+  if (document.body.scrollWidth < BREAKPOINT) {
+    const toolbox = document.querySelector(".toolbox");
+    return toolbox.classList.contains("expanded");
+  } else {
+    return true;
+  }
+}
+
+function toggleToolbox(expand) {
+  if (expand === undefined) {
+    isExpanded = !isExpanded;
+  } else {
+    isExpanded = expand;
+  }
 
   const btn = document.querySelector("#toolbox-btn");
   const show = btn.querySelector("#show-toolbox-btn");
@@ -316,11 +329,9 @@ function submit() {
 function handleResize() {
   const width = document.body.scrollWidth;
   if (width < BREAKPOINT) {
-    isExpanded = true;
-    toggleToolbox();
+    toggleToolbox(false);
   } else if (width >= BREAKPOINT) {
-    isExpanded = false;
-    toggleToolbox();
+    toggleToolbox(true);
   }
   
   scrollToBottom();
@@ -352,8 +363,14 @@ authorForm.addEventListener("submit", e => {
 
 // toolbox
 const toolboxBtn = document.querySelector("#toolbox-btn");
-let isExpanded = document.querySelector(".toolbox").classList.contains("expanded");
-toolboxBtn.addEventListener("click", toggleToolbox);
+let isExpanded = isToolboxExpanded();
+toolboxBtn.addEventListener("click", () => toggleToolbox());
+
+// strats controls
+const stratsBtns = document.querySelectorAll("#strats-controls button");
+stratsBtns.forEach(btn => btn.addEventListener("click", () => {
+  toggleToolbox(false);
+}));
 
 // trailing and
 const endingControls = document.querySelector("#ending-controls");

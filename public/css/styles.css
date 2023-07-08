@@ -135,6 +135,7 @@ main {
   border: 1px solid var(--bg-sec-col);
   font-size: 4vh;
   line-height: 1;
+  width: 100%;
 }
 
 #title-input:disabled,
