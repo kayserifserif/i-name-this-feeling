@@ -56,6 +56,10 @@ router.get('/archive', async (req, res, next) => {
   res.render('archive', { data, error });
 });
 
+router.get('/about', async (req, res, next) => {
+  res.render('about');
+});
+
 router.post('/submit', async (req, res, next) => {
   const body = req.body;
   const { data, error } = await submitData(body);

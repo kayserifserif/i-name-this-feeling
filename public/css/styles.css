@@ -431,12 +431,8 @@ main {
 
 /* FOOTER */
 
-.footer {
+.about {
   color: var(--fg-sec-col);
-}
-
-.footer p {
-  margin: 0;
 }
 
 .logo {
