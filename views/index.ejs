@@ -50,22 +50,39 @@
   <div class="toolbox">
     <div class="controls">
       <div id="choose" class="controls-section">
-        <p>Record as many emotions as you feel:</p>
+        <p>Your feelings include:</p>
         <div id="choose-controls">
           <button type="button" class="word"></button>
         </div>
       </div>
+      <div id="beginning" class="controls-section">
+        <p>Your feelings:</p>
+        <form id="beginning-controls">
+          <div>
+            <input type="radio" name="hasLeadingLink" id="yesLeadingLink" value="true" autocomplete="off">
+            <label for="yesLeadingLink">Have been simmering for a while</label>
+          </div>
+          <div>
+            <input type="radio" name="hasLeadingLink" id="noLeadingLink" value="false" checked autocomplete="off">
+            <label for="noLeadingLink">Are freshly felt</label>
+          </div>
+        </form>
+      </div>
       <div id="ending" class="controls-section">
-        <p>Emotions are currently:</p>
+        <p>Your feelings are:</p>
         <form id="ending-controls">
-          <input type="radio" name="hasTrailingLink" id="yesTrailingLink" value="true" checked autocomplete="off">
-          <label for="yesTrailingLink">Unresolved</label>
-          <input type="radio" name="hasTrailingLink" id="noTrailingLink" value="false" autocomplete="off">
-          <label for="noTrailingLink">At capacity</label>
+          <div>
+            <input type="radio" name="hasTrailingLink" id="yesTrailingLink" value="true" checked autocomplete="off">
+            <label for="yesTrailingLink">Unresolved</label>
+          </div>
+          <div>
+            <input type="radio" name="hasTrailingLink" id="noTrailingLink" value="false" autocomplete="off">
+            <label for="noTrailingLink">At capacity</label>
+          </div>
         </form>
       </div>
       <div id="strats" class="controls-section">
-        <p>Emotional coping strategies:</p>
+        <p>Some coping strategies might include:</p>
         <div id="strats-controls">
           <button id="break-btn" type="button">
             <span class="fa-solid fa-paragraph" aria-hidden="true"></span>
@@ -89,7 +106,7 @@
           </button>
           <button id="download-btn" type="button">
             <span class="fa-solid fa-file-export" aria-hidden="true"></span>
-            <span class="control-label">Take things offline</span>
+            <span class="control-label">Take it offline</span>
           </button>
           <button id="review-btn" type="button">
             <span class="fa-solid fa-cloud-arrow-up" aria-hidden="true"></span>

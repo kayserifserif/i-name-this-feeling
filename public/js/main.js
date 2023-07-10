@@ -135,18 +135,60 @@ function newBreak() {
   return newBreak;
 }
 
-function changeTrailingLink(event) {
-  if (poem.children.length > 0) {
-    const val = event.target.value;
-    const para = poem.lastChild;
-    if (val === "true") {
-      para.appendChild(newBreak());
-      const link = createLinkingWord();
-      para.appendChild(link);
+function changeLeadingLink(event) {
+  const feelings = document.querySelectorAll(".feeling");
+  const links = document.querySelectorAll(".linking-word");
+
+  const addLink = () => {
+    const firstFeeling = feelings[0];
+    const para = firstFeeling.closest(".paragraph");
+    const link = createLinkingWord();
+    para.insertBefore(link, firstFeeling);
+    const b = newBreak();
+    para.insertBefore(b, firstFeeling);
+  }
+
+  const removeLink = () => {
+    const firstLink = links[0];
+    const nextBreak = firstLink.nextElementSibling;
+    firstLink.remove();
+    nextBreak.remove();
+  }
+
+  if (feelings) {
+    if (event.target.value === "true") {
+      addLink();
     } else {
-      const b = para.querySelector(".break:last-of-type");
-      b.nextSibling.remove(); // remove break
-      b.remove(); // remove and
+      removeLink();
+    }
+  }
+}
+
+function changeTrailingLink(event) {
+  const feelings = document.querySelectorAll(".feeling");
+  const links = document.querySelectorAll(".linking-word");
+
+  const addLink = () => {
+    const lastFeeling = feelings[feelings.length - 1];
+    const para = lastFeeling.closest(".paragraph");
+    const b = newBreak();
+    para.appendChild(b);
+    const link = createLinkingWord();
+    para.appendChild(link);
+  }
+
+  const removeLink = () => {
+    const lastLink = links[links.length - 1];
+    const prevBreak = lastLink.previousElementSibling;
+    prevBreak.remove();
+    lastLink.remove();
+  }
+
+  if (feelings) {
+    if (event.target.value === "true") {
+      addLink();
+    } else {
+      removeLink();
     }
   }
 }
@@ -372,7 +414,11 @@ stratsBtns.forEach(btn => btn.addEventListener("click", () => {
   toggleToolbox(false);
 }));
 
-// trailing and
+// leading link
+const beginningControls = document.querySelector("#beginning-controls");
+beginningControls.addEventListener("change", changeLeadingLink);
+
+// trailing link
 const endingControls = document.querySelector("#ending-controls");
 endingControls.addEventListener("change", changeTrailingLink);
 
