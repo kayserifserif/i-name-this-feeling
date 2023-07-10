@@ -5,39 +5,41 @@
   <main>
     <%- include('header') %>
     <div class="text">
-      <!-- <h1 class="title">what i feel is</h1> -->
-      <div class="title">
-        <label for="title-input" class="hidden">Title / What is this poem about?</label>
-        <form class="title-form">
-          <input type="text" class="title-input" id="title-input" name="title-input" value="what i feel is" disabled autocomplete="off">
-        </form>
-      </div>
-      <div class="poem">
-        <div class="paragraph"></div>
-        <button class="feeling"></button>
-        <span class="break"> </span>
-        <div class="linking-word">
-          <button type="button" class="linking-word-display">and</button>
-          <div class="linking-options">
-            <button type="button" class="option">and</button>
-            <button type="button" class="option">but</button>
-            <button type="button" class="option">so</button>
-            <button type="button" class="option">then</button>
-            <button type="button" class="option">yet</button>
-            <button type="button" class="option">though</button>
-            <button type="button" class="option">despite</button>
+      <div class="builder">
+        <!-- <h1 class="title">what i feel is</h1> -->
+        <div class="title">
+          <label for="title-input" class="hidden">Title / What is this poem about?</label>
+          <form class="title-form">
+            <input type="text" class="title-input" id="title-input" name="title-input" value="what i feel is" disabled autocomplete="off">
+          </form>
+        </div>
+        <div class="poem">
+          <div class="paragraph"></div>
+          <button class="feeling"></button>
+          <span class="break"> </span>
+          <div class="linking-word">
+            <button type="button" class="linking-word-display">and</button>
+            <div class="linking-options">
+              <button type="button" class="option">and</button>
+              <button type="button" class="option">but</button>
+              <button type="button" class="option">so</button>
+              <button type="button" class="option">then</button>
+              <button type="button" class="option">yet</button>
+              <button type="button" class="option">though</button>
+              <button type="button" class="option">despite</button>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="author hidden">
-        <label for="author-input">Your name, if you want</label>
-        <form class="author-form">
-          <input type="text" class="author-input" id="author-input" name="author-input" value="">
-        </form>
-      </div>
-      <div class="review-btns hidden">
-        <button type="button" class="review-btn" id="cancel-btn">Cancel</button>
-        <button type="button" class="review-btn" id="submit-btn">Submit</button>
+        <div class="author hidden">
+          <label for="author-input">Your name, if you want</label>
+          <form class="author-form">
+            <input type="text" class="author-input" id="author-input" name="author-input" value="">
+          </form>
+        </div>
+        <div class="review-btns hidden">
+          <button type="button" class="review-btn" id="cancel-btn">Cancel</button>
+          <button type="button" class="review-btn" id="submit-btn">Submit</button>
+        </div>
       </div>
     </div>
   </main>

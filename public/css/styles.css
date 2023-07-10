@@ -184,13 +184,16 @@ main {
   font-family: "IBM Plex Serif", serif;
   font-weight: 500;
   font-style: italic;
-  cursor: pointer;
   position: relative;
 }
 
-.feeling:hover::after,
-.feeling:active::after,
-.feeling:focus::after {
+.builder .feeling {
+  cursor: pointer;
+}
+
+.builder .feeling:hover::after,
+.builder .feeling:active::after,
+.builder .feeling:focus::after {
   content: "";
   position: absolute;
   top: 50%;
@@ -327,7 +330,7 @@ main {
 .word:focus {
   cursor: pointer;
   font-style: italic;
-  font-size: 1.6em;
+  font-size: 1.5em;
   margin-right: 1.1em;
 }
 
@@ -427,6 +430,10 @@ main {
     height: 200px;
     overflow-y: auto;
   }
+}
+
+.entry .paragraph div {
+  display: inline;
 }
 
 /* FOOTER */
