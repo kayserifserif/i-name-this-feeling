@@ -412,6 +412,11 @@ main {
   gap: 50px 20px;
 }
 
+.loading {
+  margin: 0;
+  color: var(--fg-sec-col);
+}
+
 .entry {
   color: var(--fg-sec-col);
 }

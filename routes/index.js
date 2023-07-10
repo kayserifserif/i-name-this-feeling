@@ -1,5 +1,7 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
+
+const fs = require('fs/promises');
 
 const { createClient } = require("@supabase/supabase-js");
 const supabaseUrl = 'https://nkzqjyyupuffvgqcrcxy.supabase.co';
@@ -11,12 +13,16 @@ const formatter = new Intl.DateTimeFormat("en-US", {
   timeStyle: "short"
 });
 
+let words = null;
+let links = null;
+
 async function getData() {
   const { data, error } = await supabase
     .from("poems")
     .select("*");
   
   if (data) {
+    console.log(data);
     data.forEach(entry => {
       const createdAt = entry.created_at;
       if (createdAt) {
@@ -46,14 +52,18 @@ async function submitData(body) {
 }
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
+router.get('/', (req, res, next) => {
   res.render('index');
 });
 
-router.get('/archive', async (req, res, next) => {
+router.get('/archive', (req, res, next) => {
+  res.render('archive');
+});
+
+router.get('/fetch', async (req, res, next) => {
   const { data, error } = await getData();
-  console.log("gotten", data, error);
-  res.render('archive', { data, error });
+  console.log("gotten", { data, error });
+  res.send({ data, error });
 });
 
 router.get('/about', async (req, res, next) => {

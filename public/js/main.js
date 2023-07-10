@@ -11,35 +11,53 @@ const FEELING_TEMPLATE = document.querySelector(".feeling");
 FEELING_TEMPLATE.remove();
 const BREAK_TEMPLATE = document.querySelector(".break");
 BREAK_TEMPLATE.remove();
+const LINKING_OPTION_TEMPLATE = document.querySelector(".linking-word .option");
+LINKING_OPTION_TEMPLATE.remove();
 const LINKING_TEMPLATE = document.querySelector(".linking-word");
 LINKING_TEMPLATE.remove();
 
 const BREAKPOINT = 1000;
 
-const WORDS_CONTAINER = document.querySelector("#choose-controls");
-fetch("/assets/words.txt")
-  .then(r => r.text())
-  .then(text => {
-    // create list of words
-    const words = text.trim().split("\n");
-    shuffle(words);
-
-    // create and add elements
-    words.forEach(word => {
-      const el = WORD_TEMPLATE.cloneNode(true);
-      el.innerText = word;
-      el.addEventListener("click", () => {
-        addNewFeeling(word);
-      });
-      WORDS_CONTAINER.appendChild(el);
-    });
-
-    // initialise first few
-    for (let i = 0; i < NUM_INIT_WORDS; i++) {
-      const word = words[i];
-      addNewFeeling(word);
-    }
+const files = ["/assets/words.txt", "/assets/links.txt"];
+const promises = files.map(file => fetch(file).then(res => res.text()));
+Promise.all(promises)
+  .then(values => {
+    const [words, links] = values.map(arr => arr.trim().split("\n"));
+    populateFeelingWords(words);
+    populateLinkingWords(links);
+    startWithFeelings(words);
   });
+
+function populateFeelingWords(words) {
+  shuffle(words);
+
+  // create and add elements
+  const WORDS_CONTAINER = document.querySelector("#choose-controls");
+  words.forEach(word => {
+    const el = WORD_TEMPLATE.cloneNode(true);
+    el.innerText = word;
+    el.addEventListener("click", () => {
+      addNewFeeling(word);
+    });
+    WORDS_CONTAINER.appendChild(el);
+  });
+}
+
+function populateLinkingWords(links) {
+  const list = LINKING_TEMPLATE.querySelector(".linking-options");
+  links.forEach(link => {
+    const el = LINKING_OPTION_TEMPLATE.cloneNode(true);
+    el.innerText = link;
+    list.appendChild(el);
+  });
+}
+
+function startWithFeelings(words) {
+  for (let i = 0; i < NUM_INIT_WORDS; i++) {
+    const word = words[i];
+    addNewFeeling(word);
+  }
+}
 
 // https://javascript.info/task/shuffle
 function shuffle(array) {
@@ -82,41 +100,35 @@ function toggleToolbox(expand) {
 }
 
 function addNewFeeling(text) {
+  const paras = document.querySelectorAll(".paragraph");
   let para = null;
-  if (poem.children.length === 0) {
-    para = PARAGRAPH_TEMPLATE.cloneNode(true);
-  } else {
-    para = poem.lastChild;
-    if (para.children.length > 0) {
-      if (endingControls.hasTrailingLink.value === "false") {
-        para.appendChild(newBreak());
-        const link = createLinkingWord();
-        para.appendChild(link);
-      }
+  if (paras.length > 0) {
+    para = paras[paras.length - 1];
+    if (endingControls.hasTrailingLink.value === "false") {
       para.appendChild(newBreak());
+      para.appendChild(newLinkingWord());
     }
+    para.appendChild(newBreak());
+  } else {
+    para = PARAGRAPH_TEMPLATE.cloneNode(true);
+    poem.appendChild(para);
   }
 
-  const newFeeling = FEELING_TEMPLATE.cloneNode(true);
-  newFeeling.innerText = text;
-  newFeeling.addEventListener("click", () => removeFeeling(newFeeling));
-  para.appendChild(newFeeling);
+  const feeling = newFeelingWord(text);
+  para.appendChild(feeling);
+
   if (endingControls.hasTrailingLink.value === "true") {
     para.appendChild(newBreak());
-    const link = createLinkingWord();
-    para.appendChild(link);
-  }
-  if (poem.children.length === 0) {
-    poem.appendChild(para);
+    para.appendChild(newLinkingWord());
   }
 
   scrollToBottom();
 }
 
 function removeFeeling(feeling) {
-  const followingBreak = feeling.nextSibling;
+  const followingBreak = feeling.nextElementSibling;
   if (followingBreak) {
-    const followingLink = followingBreak.nextSibling;
+    const followingLink = followingBreak.nextElementSibling;
     followingLink.remove();
     followingBreak.remove();
   }
@@ -131,7 +143,7 @@ function removeFeeling(feeling) {
 
 function newBreak() {
   const newBreak = BREAK_TEMPLATE.cloneNode(true);
-  newBreak.addEventListener("click", createBreak);
+  newBreak.addEventListener("click", useBreak);
   return newBreak;
 }
 
@@ -142,7 +154,7 @@ function changeLeadingLink(event) {
   const addLink = () => {
     const firstFeeling = feelings[0];
     const para = firstFeeling.closest(".paragraph");
-    const link = createLinkingWord();
+    const link = newLinkingWord();
     para.insertBefore(link, firstFeeling);
     const b = newBreak();
     para.insertBefore(b, firstFeeling);
@@ -173,7 +185,7 @@ function changeTrailingLink(event) {
     const para = lastFeeling.closest(".paragraph");
     const b = newBreak();
     para.appendChild(b);
-    const link = createLinkingWord();
+    const link = newLinkingWord();
     para.appendChild(link);
   }
 
@@ -206,7 +218,14 @@ function clearPoem() {
   poem.appendChild(para);
 }
 
-function createLinkingWord() {
+function newFeelingWord(text) {
+  const feeling = FEELING_TEMPLATE.cloneNode(true);
+  feeling.innerText = text;
+  feeling.addEventListener("click", () => removeFeeling(feeling));
+  return feeling;
+}
+
+function newLinkingWord() {
   const link = LINKING_TEMPLATE.cloneNode(true);
 
   const displayWord = link.querySelector(".linking-word-display");
@@ -236,15 +255,15 @@ function activateBreaks() {
   }
 }
 
-function createBreak(event) {
+function useBreak(event) {
   const b = event.target;
   if (!b.classList.contains("break-active")) return;
 
   const els = [];
-  let el = b.nextSibling;
+  let el = b.nextElementSibling;
   while (el) {
     els.push(el);
-    el = el.nextSibling;
+    el = el.nextElementSibling;
   }
   const para = PARAGRAPH_TEMPLATE.cloneNode(true);
   for (const el of els) {
