@@ -11,6 +11,9 @@
   --darklink: #50d6ff;
   --darklinkhover: #30475b;
   --darklinkactive: #18344d;
+
+  --serif: "IBM Plex Serif", serif;
+  --sans: "IBM Plex Sans", sans-serif;
 }
 
 * {
@@ -25,7 +28,7 @@ body {
 }
 
 body {
-  font-family: "IBM Plex Sans", sans-serif;
+  font-family: var(--sans);
   background-color: var(--bg-col);
   color: var(--fg-col);
   display: flex;
@@ -52,7 +55,7 @@ button {
   border: none;
   margin: 0;
   padding: 0;
-  font-family: "IBM Plex Sans", sans-serif;
+  font-family: var(--sans);
   font-size: 1em;
   line-height: 1;
   color: var(--fg-col);
@@ -130,7 +133,7 @@ main {
   appearance: none;
   margin: 0;
   padding: 0;
-  font-family: "IBM Plex Sans", sans-serif;
+  font-family: var(--sans);
   background-color: var(--bg-col);
   color: var(--fg-sec-col);
   border: 1px solid var(--bg-sec-col);
@@ -181,7 +184,7 @@ main {
   padding: 0;
   color: var(--fg-col);
   font-size: 1em;
-  font-family: "IBM Plex Serif", serif;
+  font-family: var(--serif);
   font-weight: 500;
   font-style: italic;
   position: relative;
@@ -316,7 +319,7 @@ main {
   appearance: none;
   background: none;
   border: none;
-  font-family: "IBM Plex Serif", serif;
+  font-family: var(--serif);
   font-size: 1.5em;
   color: var(--fg-col);
 }
@@ -325,13 +328,43 @@ main {
   margin-right: 1em;
 }
 
-.word:hover,
-.word:active,
-.word:focus {
+.word:hover {
   cursor: pointer;
   font-style: italic;
   font-size: 1.5em;
   margin-right: 1.1em;
+}
+
+#freeform-form {
+  margin: 1em 0 0 0;
+}
+
+#freeform-form label {
+  color: var(--fg-sec-col);
+}
+
+#freeform-form > div {
+  margin-top: 0.5em;
+  display: flex;
+  gap: 1em;
+}
+
+#freeform-input {
+  appearance: none;
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: none;
+  font-size: 1em;
+  font-family: var(--serif);
+  padding: 0.1em 0.3em;
+  background-color: var(--bg-sec-col);
+  color: var(--fg-col);
+  flex: 1;
+}
+
+#freeform-form button:hover {
+  font-style: italic;
 }
 
 #strats-controls {

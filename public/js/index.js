@@ -30,17 +30,18 @@ Promise.all(promises)
 
 function populateFeelingWords(words) {
   shuffle(words);
-
-  // create and add elements
-  const WORDS_CONTAINER = document.querySelector("#choose-controls");
-  words.forEach(word => {
-    const el = WORD_TEMPLATE.cloneNode(true);
-    el.innerText = word;
-    el.addEventListener("click", () => {
-      addNewFeeling(word);
-    });
-    WORDS_CONTAINER.appendChild(el);
-  });
+  words.forEach(word => addFeeling(word));
+  // // create and add elements
+  // const WORDS_CONTAINER = document.querySelector("#choose-controls");
+  // words.forEach(word => {
+  //   const el = WORD_TEMPLATE.cloneNode(true);
+  //   el.innerText = word;
+  //   el.addEventListener("click", () => {
+  //     selectFeeling(word);
+  //   });
+  //   // WORDS_CONTAINER.appendChild(el);
+  //   WORDS_CONTAINER.insertBefore(el, WORDS_CONTAINER.firstElementChild);
+  // });
 }
 
 function populateLinkingWords(links) {
@@ -55,7 +56,7 @@ function populateLinkingWords(links) {
 function startWithFeelings(words) {
   for (let i = 0; i < NUM_INIT_WORDS; i++) {
     const word = words[i];
-    addNewFeeling(word);
+    selectFeeling(word);
   }
 }
 
@@ -99,7 +100,17 @@ function toggleToolbox(expand) {
   toolbox.classList.toggle("expanded", isExpanded);
 }
 
-function addNewFeeling(text) {
+function addFeeling(text) {
+  // create and add elements
+  const WORDS_CONTAINER = document.querySelector("#choose-controls");
+  const freeform = document.querySelector("#freeform-form");
+  const el = WORD_TEMPLATE.cloneNode(true);
+  el.innerText = text;
+  el.addEventListener("click", () => selectFeeling(text));
+  WORDS_CONTAINER.insertBefore(el, freeform);
+}
+
+function selectFeeling(text) {
   const paras = document.querySelectorAll(".paragraph");
   let para = null;
   if (paras.length > 0) {
@@ -426,6 +437,18 @@ authorForm.addEventListener("submit", e => {
 const toolboxBtn = document.querySelector("#toolbox-btn");
 let isExpanded = isToolboxExpanded();
 toolboxBtn.addEventListener("click", () => toggleToolbox());
+
+// freeform input
+const freeform = document.querySelector("#freeform-form");
+freeform.addEventListener("submit", e => {
+  e.preventDefault();
+  const input = e.target.freeformInput;
+  const val = input.value;
+  if (val) {
+    addFeeling(val);
+    input.value = "";
+  }
+});
 
 // strats controls
 const stratsBtns = document.querySelectorAll("#strats-controls button");
