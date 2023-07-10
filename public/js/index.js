@@ -1,4 +1,4 @@
-const NUM_INIT_WORDS = 3;
+const NUM_INIT_FEELINGS = 3;
 
 const text = document.querySelector(".text");
 const poem = document.querySelector(".poem");
@@ -31,17 +31,6 @@ Promise.all(promises)
 function populateFeelingWords(words) {
   shuffle(words);
   words.forEach(word => addFeeling(word));
-  // // create and add elements
-  // const WORDS_CONTAINER = document.querySelector("#choose-controls");
-  // words.forEach(word => {
-  //   const el = WORD_TEMPLATE.cloneNode(true);
-  //   el.innerText = word;
-  //   el.addEventListener("click", () => {
-  //     selectFeeling(word);
-  //   });
-  //   // WORDS_CONTAINER.appendChild(el);
-  //   WORDS_CONTAINER.insertBefore(el, WORDS_CONTAINER.firstElementChild);
-  // });
 }
 
 function populateLinkingWords(links) {
@@ -54,7 +43,7 @@ function populateLinkingWords(links) {
 }
 
 function startWithFeelings(words) {
-  for (let i = 0; i < NUM_INIT_WORDS; i++) {
+  for (let i = 0; i < NUM_INIT_FEELINGS; i++) {
     const word = words[i];
     selectFeeling(word);
   }
@@ -103,11 +92,10 @@ function toggleToolbox(expand) {
 function addFeeling(text) {
   // create and add elements
   const WORDS_CONTAINER = document.querySelector("#choose-controls");
-  const freeform = document.querySelector("#freeform-form");
   const el = WORD_TEMPLATE.cloneNode(true);
   el.innerText = text;
   el.addEventListener("click", () => selectFeeling(text));
-  WORDS_CONTAINER.insertBefore(el, freeform);
+  WORDS_CONTAINER.insertBefore(el, WORDS_CONTAINER.lastElementChild);
 }
 
 function selectFeeling(text) {
@@ -450,9 +438,9 @@ freeform.addEventListener("submit", e => {
   }
 });
 
-// strats controls
-const stratsBtns = document.querySelectorAll("#strats-controls button");
-stratsBtns.forEach(btn => btn.addEventListener("click", () => {
+// strategies controls
+const strategiesBtns = document.querySelectorAll("#strategies-controls button");
+strategiesBtns.forEach(btn => btn.addEventListener("click", () => {
   toggleToolbox(false);
 }));
 

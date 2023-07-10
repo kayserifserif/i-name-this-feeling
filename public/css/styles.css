@@ -367,20 +367,20 @@ main {
   font-style: italic;
 }
 
-#strats-controls {
+#strategies-controls {
   display: flex;
   flex-direction: column;
   gap: 1em;
 }
 
-#strats-controls button {
+#strategies-controls button {
   text-align: left;
   display: flex;
   gap: 0.5em;
   align-items: center;
 }
 
-#strats-controls button:hover {
+#strategies-controls button:hover {
   font-style: italic;
 }
 
