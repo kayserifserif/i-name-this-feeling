@@ -232,16 +232,21 @@ function newLinkingWord() {
     link.classList.toggle("expanded");
   });
 
+  const handleClick = (option) => {
+    displayWord.innerText = option.innerText;
+    link.classList.remove("expanded");
+    options.forEach(option => {
+      option.classList.remove("hidden");
+    });
+    option.classList.add("hidden");
+  }
+
   const options = link.querySelectorAll(".option");
   options.forEach(option => {
-    option.classList.remove("hidden");
     if (option.innerText === displayWord.innerText) {
       option.classList.add("hidden");
     }
-    option.addEventListener("click", () => {
-      displayWord.innerText = option.innerText;
-      link.classList.remove("expanded");
-    });
+    option.addEventListener("click", () => handleClick(option));
   });
 
   return link;

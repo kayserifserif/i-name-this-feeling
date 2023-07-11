@@ -405,6 +405,12 @@ main {
   display: none;
 }
 
+.linking-word.expanded .linking-word-display {
+  background-color: var(--bg-col);
+  padding: 0.2em;
+  margin: -0.2em;
+}
+
 .linking-word.expanded .linking-options {
   display: flex;
   flex-direction: column;
@@ -412,10 +418,10 @@ main {
   position: absolute;
   top: 1em;
   z-index: 1;
-  opacity: 0.8;
+  opacity: 0.9;
   background-color: var(--bg-col);
-  padding: 0 0.5em;
-  margin-left: -0.5em;
+  padding: 0.2em;
+  margin-left: -0.2em;
 }
 
 .linking-word button {
@@ -436,6 +442,7 @@ main {
   width: max-content;
   opacity: 0.5;
   transition: 0.15s opacity;
+  font-size: 0.5em;
 }
 
 .linking-word .option:hover {
