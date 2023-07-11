@@ -349,11 +349,10 @@ function submit(e) {
   e.preventDefault();
 
   const text = getPoemText();
-  const title = document.querySelector("#title-input").value;
-  const author = document.querySelector("#author-input").value;
+  const title = e.target.titleInput.value;
+  const author = e.target.authorInput.value;
 
   const body = { title, author, text };
-  console.log(body);
   
   const request = fetch("/submit", {
     method: "POST",
@@ -382,6 +381,7 @@ function submit(e) {
 
       setTimeout(() => {
         submitBtn.innerText = originalText;
+        cancelBtn.disabled = false;
         submitBtn.disabled = false;
         cancelSubmission();
       }, TIMEOUT);
@@ -408,20 +408,6 @@ function cancelInteractions(e) {
     }
   }
 }
-
-const titleForm = document.querySelector(".title-form");
-const titleInput = document.querySelector(".title-input");
-titleForm.addEventListener("submit", e => {
-  e.preventDefault();
-  titleInput.blur();
-});
-
-const authorForm = document.querySelector(".author-form");
-const authorInput = document.querySelector(".author-input");
-authorForm.addEventListener("submit", e => {
-  e.preventDefault();
-  authorInput.blur();
-});
 
 // toolbox
 const toolboxBtn = document.querySelector("#toolbox-btn");

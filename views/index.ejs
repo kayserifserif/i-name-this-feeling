@@ -9,9 +9,11 @@
         <!-- <h1 class="title">what i feel is</h1> -->
         <div class="title">
           <label for="title-input" class="hidden">Title / What is this poem about?</label>
-          <form class="title-form">
-            <input type="text" class="title-input" id="title-input" name="title-input" value="what i feel is" disabled autocomplete="off">
-          </form>
+          <input type="text"
+            class="title-input" id="title-input" name="titleInput"
+            value="what i feel is"
+            disabled autocomplete="off"
+            form="submit-form">
         </div>
         <div class="poem">
           <div class="paragraph"></div>
@@ -26,9 +28,10 @@
         </div>
         <div class="author hidden">
           <label for="author-input">Your name, if you want</label>
-          <form class="author-form">
-            <input type="text" class="author-input" id="author-input" name="author-input" value="">
-          </form>
+          <input type="text"
+            class="author-input" id="author-input" name="authorInput"
+            autocomplete="off"
+            form="submit-form">
         </div>
         <form id="submit-form" class="hidden">
           <button type="button" class="review-btn" id="cancel-btn">Cancel</button>
