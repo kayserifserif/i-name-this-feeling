@@ -297,10 +297,11 @@ main {
     }
   }
 
-.toolbox p {
+.toolbox p,
+.toolbox label {
   font-style: italic;
   color: var(--fg-sec-col);
-  margin-top: 0;
+  margin: 0 0 1em 0;
 }
 
 .controls {
