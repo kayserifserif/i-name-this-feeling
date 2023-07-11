@@ -80,6 +80,10 @@ input[type="text"] {
   padding: 0.1em 0.2em;
 }
 
+input[type="text"]:disabled {
+  padding: 0;
+}
+
 .hidden {
   display: none !important;
 }
@@ -298,7 +302,7 @@ main {
   }
 
 .toolbox p,
-.toolbox label {
+.toolbox > label {
   font-style: italic;
   color: var(--fg-sec-col);
   margin: 0 0 1em 0;
@@ -307,7 +311,7 @@ main {
 .controls {
   display: flex;
   flex-direction: column;
-  gap: 50px;
+  gap: 2em;
   height: 100%;
 }
 
@@ -478,11 +482,11 @@ main {
 /* FOOTER */
 
 .about {
-  color: var(--fg-sec-col);
+  width: 100%;
+  max-width: 65ch;
 }
 
 .logo {
-  display: inline-block;
+  display: inline;
   height: 1em;
-  margin: 0 0.1em -0.2em 0.1em;
 }
