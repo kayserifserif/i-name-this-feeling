@@ -67,6 +67,19 @@ button:disabled {
   color: var(--fg-sec-col);
 }
 
+input[type="text"] {
+  appearance: none;
+  border: none;
+  margin: 0;
+  font-size: 1em;
+  line-height: 1;
+  font-family: var(--sans);
+  background-color: var(--bg-col);
+  color: var(--fg-sec-col);
+  border: 1px solid var(--bg-sec-col);
+  padding: 0.1em 0.2em;
+}
+
 .hidden {
   display: none !important;
 }
@@ -130,16 +143,7 @@ main {
 
 #title-input,
 #author-input {
-  appearance: none;
-  margin: 0;
-  padding: 0;
-  font-family: var(--sans);
-  background-color: var(--bg-col);
-  color: var(--fg-sec-col);
-  border: 1px solid var(--bg-sec-col);
   font-size: 4vh;
-  line-height: 1;
-  width: 100%;
 }
 
 #title-input:disabled,
@@ -353,14 +357,7 @@ main {
 }
 
 #freeform-input {
-  appearance: none;
-  margin: 0;
-  padding: 0;
-  border: none;
-  background: none;
-  font-size: 1em;
   font-family: var(--serif);
-  padding: 0.1em 0.3em;
   background-color: var(--bg-sec-col);
   color: var(--fg-col);
   flex: 1;
