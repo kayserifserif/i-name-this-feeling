@@ -147,10 +147,13 @@ main {
   background: none;
 }
 
-.review-btns {
+#submit-form {
   margin-top: 50px;
-  display: flex;
   gap: 1em;
+}
+
+#submit-form:not(.hidden) {
+  display: flex;
 }
 
 .review-btn:hover {

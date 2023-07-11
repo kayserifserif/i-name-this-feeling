@@ -318,7 +318,7 @@ function reviewSubmission() {
   document.querySelector(".author").classList.remove("hidden");
   document.querySelectorAll("#title-input, #author-input").forEach(input => input.disabled = false);
 
-  document.querySelector(".review-btns").classList.remove("hidden");
+  document.querySelector("#submit-form").classList.remove("hidden");
 
   document.querySelector(".toolbox").classList.add("hidden");
 }
@@ -328,7 +328,7 @@ function cancelSubmission() {
   document.querySelector(".author").classList.add("hidden");
   document.querySelectorAll("#title-input, #author-input").forEach(input => input.disabled = true);
 
-  document.querySelector(".review-btns").classList.add("hidden");
+  document.querySelector("#submit-form").classList.add("hidden");
 
   document.querySelector(".toolbox").classList.remove("hidden");
 }
@@ -345,7 +345,9 @@ function getPoemText() {
   return text;
 }
 
-function submit() {
+function submit(e) {
+  e.preventDefault();
+
   const text = getPoemText();
   const title = document.querySelector("#title-input").value;
   const author = document.querySelector("#author-input").value;
@@ -479,13 +481,13 @@ for (const sizeControl of sizeControls) {
 const downloadBtn = document.querySelector("#download-btn");
 downloadBtn.addEventListener("click", download);
 
-// submit
+// review and submit
 const reviewBtn = document.querySelector("#review-btn");
-const cancelBtn = document.querySelector("#cancel-btn");
-const submitBtn = document.querySelector("#submit-btn");
 reviewBtn.addEventListener("click", reviewSubmission);
+const submitForm = document.querySelector("#submit-form");
+submitForm.addEventListener("submit", submit);
+const cancelBtn = document.querySelector("#cancel-btn");
 cancelBtn.addEventListener("click", cancelSubmission);
-submitBtn.addEventListener("click", submit);
 
 // window resize
 window.addEventListener("resize", handleResize);
