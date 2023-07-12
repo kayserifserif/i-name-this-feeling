@@ -1,10 +1,10 @@
 {
-  "name": "what-i-feel-is",
+  "name": "i-name-this-feeling",
   "private": true,
   "version": "0.0.0",
   "scripts": {
     "start": "node ./bin/www",
-    "dev": "DEBUG=what-i-feel-is:* npm start"
+    "dev": "DEBUG=i-name-this-feeling:* npm start"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.26.0",

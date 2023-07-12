@@ -4,7 +4,7 @@ const router = express.Router();
 const fs = require('fs/promises');
 
 const { createClient } = require("@supabase/supabase-js");
-const supabaseUrl = 'https://nkzqjyyupuffvgqcrcxy.supabase.co';
+const supabaseUrl = 'https://mjbobhzqxjuuytzxzdly.supabase.co';
 const supabaseKey = process.env.SUPABASE_KEY;
 const supabase = createClient(supabaseUrl, supabaseKey);
 
@@ -12,9 +12,6 @@ const formatter = new Intl.DateTimeFormat("en-US", {
   dateStyle: "medium",
   timeStyle: "short"
 });
-
-let words = null;
-let links = null;
 
 async function getData() {
   const { data, error } = await supabase

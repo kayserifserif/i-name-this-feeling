@@ -319,8 +319,8 @@ function download() {
 }
 
 function reviewSubmission() {
-  document.querySelector(".title label").classList.remove("hidden");
-  document.querySelector(".author").classList.remove("hidden");
+  document.querySelector(".poem-title label").classList.remove("hidden");
+  document.querySelector(".poem-author").classList.remove("hidden");
   document.querySelectorAll("#title-input, #author-input").forEach(input => input.disabled = false);
 
   document.querySelector("#submit-form").classList.remove("hidden");
@@ -329,8 +329,8 @@ function reviewSubmission() {
 }
 
 function cancelSubmission() {
-  document.querySelector(".title label").classList.add("hidden");
-  document.querySelector(".author").classList.add("hidden");
+  document.querySelector(".poem-title label").classList.add("hidden");
+  document.querySelector(".poem-author").classList.add("hidden");
   document.querySelectorAll("#title-input, #author-input").forEach(input => input.disabled = true);
 
   document.querySelector("#submit-form").classList.add("hidden");
@@ -460,7 +460,6 @@ themeBtn.addEventListener("click", toggleTheme);
 
 // font size control
 const sizeControls = document.querySelectorAll(".size-control");
-const title = document.querySelector(".title");
 for (const sizeControl of sizeControls) {
   sizeControl.addEventListener("click", () => {
     const bigger = sizeControl.id === "bigger-btn";

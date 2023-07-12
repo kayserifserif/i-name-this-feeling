@@ -111,6 +111,12 @@ input[type="text"]:disabled {
   margin-right: 1em;
 }
 
+.title {
+  font-size: 1em;
+  font-weight: 500;
+  margin: 0;
+}
+
 /* POEM */
 
 main {
@@ -139,8 +145,8 @@ main {
     }
   }
 
-.title label:not(.hidden),
-.author label:not(.hidden) {
+.poem-title label:not(.hidden),
+.poem-author label:not(.hidden) {
   display: block;
   color: var(--fg-sec-col);
 }
