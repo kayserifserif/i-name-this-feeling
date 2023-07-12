@@ -2,7 +2,7 @@
 
 A tool for writing poetry by giving names to your feelings.
 
-![The prompt "what i feel is" followed by repetitions of "rage and rage and rage".](documentation/Screenshot 2023-07-11 at 10.34.01 PM.png)
+![The prompt "what i feel is" followed by repetitions of "rage and rage and rage".](documentation/Screenshot%202023-07-11%20at%2010.34.01 PM.png)
 
 ## Development
 
