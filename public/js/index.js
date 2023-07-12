@@ -18,6 +18,8 @@ LINKING_TEMPLATE.remove();
 
 const BREAKPOINT = 1000;
 
+let width = document.body.scrollWidth;
+
 const files = ["/assets/words.txt", "/assets/links.txt"];
 const promises = files.map(file => fetch(file).then(res => res.text()));
 Promise.all(promises)
@@ -394,7 +396,9 @@ function submit(e) {
 }
 
 function handleResize() {
-  const width = document.body.scrollWidth;
+  if (document.body.scrollWidth === width) return;
+  
+  width = document.body.scrollWidth;
   if (width < BREAKPOINT) {
     toggleToolbox(false);
   } else if (width >= BREAKPOINT) {
