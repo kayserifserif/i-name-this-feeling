@@ -12,3 +12,5 @@ This is a Node.js/Express app using EJS as the templating engine. It also interf
 npm install
 npm run dev
 ```
+
+The site is hosted on render.com.
