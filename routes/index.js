@@ -1,10 +1,8 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
 
-const fs = require('fs/promises');
-
 const { createClient } = require("@supabase/supabase-js");
-const supabaseUrl = 'https://mjbobhzqxjuuytzxzdly.supabase.co';
+const supabaseUrl = "https://mjbobhzqxjuuytzxzdly.supabase.co";
 const supabaseKey = process.env.SUPABASE_KEY;
 const supabase = createClient(supabaseUrl, supabaseKey);
 
@@ -49,25 +47,25 @@ async function submitData(body) {
 }
 
 /* GET home page. */
-router.get('/', (req, res, next) => {
-  res.render('index');
+router.get("/", (req, res, next) => {
+  res.render("index");
 });
 
-router.get('/archive', (req, res, next) => {
-  res.render('archive');
+router.get("/archive", (req, res, next) => {
+  res.render("archive");
 });
 
-router.get('/fetch', async (req, res, next) => {
+router.get("/fetch", async (req, res, next) => {
   const { data, error } = await getData();
   console.log("gotten", { data, error });
   res.send({ data, error });
 });
 
-router.get('/about', async (req, res, next) => {
-  res.render('about');
+router.get("/about", async (req, res, next) => {
+  res.render("about");
 });
 
-router.post('/submit', async (req, res, next) => {
+router.post("/submit", async (req, res, next) => {
   const body = req.body;
   const { data, error } = await submitData(body);
   res.send({ data, error });

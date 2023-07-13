@@ -10,7 +10,8 @@
   },
   "scripts": {
     "start": "node ./bin/www",
-    "dev": "DEBUG=i-name-this-feeling:* npm start"
+    "dev": "DEBUG=i-name-this-feeling:* npm start",
+    "lint": "npx eslint app.js routes/index.js public/js/index.js public/js/archive.js"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.26.0",
@@ -20,5 +21,8 @@
     "ejs": "^3.1.9",
     "express": "~4.18.2",
     "morgan": "~1.9.1"
+  },
+  "devDependencies": {
+    "eslint": "^8.44.0"
   }
 }

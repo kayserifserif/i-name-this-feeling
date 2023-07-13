@@ -159,14 +159,14 @@ function changeLeadingLink(event) {
     para.insertBefore(link, firstFeeling);
     const b = newBreak();
     para.insertBefore(b, firstFeeling);
-  }
+  };
 
   const removeLink = () => {
     const firstLink = links[0];
     const nextBreak = firstLink.nextElementSibling;
     firstLink.remove();
     nextBreak.remove();
-  }
+  };
 
   if (feelings) {
     if (event.target.value === "true") {
@@ -188,14 +188,14 @@ function changeTrailingLink(event) {
     para.appendChild(b);
     const link = newLinkingWord();
     para.appendChild(link);
-  }
+  };
 
   const removeLink = () => {
     const lastLink = links[links.length - 1];
     const prevBreak = lastLink.previousElementSibling;
     prevBreak.remove();
     lastLink.remove();
-  }
+  };
 
   if (feelings) {
     if (event.target.value === "true") {
@@ -241,7 +241,7 @@ function newLinkingWord() {
       option.classList.remove("hidden");
     });
     option.classList.add("hidden");
-  }
+  };
 
   const options = link.querySelectorAll(".option");
   options.forEach(option => {
