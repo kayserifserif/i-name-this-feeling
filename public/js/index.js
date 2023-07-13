@@ -290,10 +290,11 @@ function toggleTheme() {
 }
 
 function changeSize(bigger) {
-  const titleOrig = parseInt(getComputedStyle(title).fontSize);
+  const titleInput = document.querySelector("#title-input");
+  const titleOrig = parseInt(getComputedStyle(titleInput).fontSize);
   const poemOrig = parseInt(getComputedStyle(poem).fontSize);
   const mult = bigger ? 1.1 : 0.9;
-  title.style.fontSize = (titleOrig * mult) + "px";
+  titleInput.style.fontSize = (titleOrig * mult) + "px";
   poem.style.fontSize = (poemOrig * mult) + "px";
 }
 
