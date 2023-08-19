@@ -14,3 +14,5 @@ npm run dev
 ```
 
 The site is hosted on render.com.
+
+The server and the database are both slow on free plans — note to self to check periodically that the project hasn't been paused.
